@@ -1,0 +1,374 @@
+---
+title: "From number names to language families"
+description: "With numbers 1-10, just 10 words, can we classify languages into known language families?"
+author: "Olaf Meneses"
+date: "2024-04-01"
+bibliography: references.bib
+output: manuscript
+lightbox: auto
+format:
+  html:
+    fig-format: svg
+    code-fold: true
+    css: style.css
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = F)
+options(dplyr.summarise.inform = FALSE)
+```
+
+```{r lib, echo=F, include=F}
+# Needed libraries
+
+packages = c("knitr","tidyverse", "plotly", "stringdist", "stringi",
+             "assertthat", "Rtsne", "DescTools", "igraph", "threejs",
+             "DT", "visNetwork",  "parallelDist", "dendextend", "factoextra",
+             "paletteer", "colorspace"
+             )
+
+# Install and load above packages
+
+package.check <- lapply(packages, FUN = function(x) {
+  if (!require(x, character.only = TRUE)) {
+    install.packages(x, dependencies = TRUE)
+    library(x, character.only = TRUE)
+  }
+})
+```
+
+This post is a continuation of a previous post [Ref: prev_post], where we made a little exploration of number names from 1 to 10 across +5000 languages and learnt some curiosities along the way. Nonetheless, you don't need to read it to understand this one. They're somewhat independent.
+
+Given the title and description of the post, you can imagine what we will see today. The idea is to try some classification, clustering and dimensionality reduction techniques to see what these 10 words can tell us about different language families.
+
+As I mentioned in the previous post, I've also created a Shiny app where you can visualize +3800 languages in an interactive 3D plot. I think it's pretty cool. I highly recommend checking it out: [Ref: shiny app]!
+
+Before we start getting into the matter, let's take a look at the data. For each language, we have the following information:
+
+-   Language name
+-   If they're extinct or not
+-   If they have more than 1 million speakers or not
+-   The parent language
+-   Group 1-7: Group 1 corresponds to the language family. Group 2 is the subgroup within Group 1. Group 3 is the subgroup within Group 2... Each subsequent group is a subset of the previous one.
+
+For example, in the case of English, we would have:
+
+```{r}
+lang_df <- read_csv("../data/lang_df.csv", show_col_types = F)
+num_df <- read_csv("../data/num_df.csv", show_col_types = F)
+
+source("../functions/data_to_table.R", encoding = "UTF-8")
+lang_df %>%
+  filter(lang_name == "English") %>% 
+  select(-lang_id) %>% 
+  show_lang_num(ids = F, dom = "t")
+```
+
+We can have a look at all the languages in the following table, where we show the language, its family and the names of its numbers.
+
+```{r, warning=F}
+show_lang_num(lang_df$lang_id)
+```
+
+```{r}
+# We will use a subset of the original dataframe
+source("../functions/clean_data.R", encoding = "UTF-8")
+
+num_df_clean <- num_df %>% 
+  mutate(across(N1:N10, ~remove_non_alphabetic(.x))) %>% 
+  filter(if_all(N1:N10, ~!is.na(.x))) %>% 
+  filter(if_all(N1:N10, ~not_empty(.x)))
+
+# Filtered num_df_clean to only include a reduced number of languages,
+# the ones with more than 1 million speakers
+num_df_gt_million <- num_df_clean %>%
+  filter_lang("gt_million") 
+```
+
+# The Big Q
+
+With numbers 1-10, just 10 words, can we classify languages into known language families?
+
+We will proceed as follows:
+
+1.  Identify different distance functions to compute with our data (dataset of +3000 languages)
+2.  For each distance, calculate the distance matrix
+3.  Based on k-nearest neighbors ([k-NN](https://en.wikipedia.org/wiki/K-nearest_neighbors_algorithm)) classification (since we know the correct groups), determine which distance method works better and compute its distance matrix
+4.  Perform Multidimensional Scaling (MDS) and tSNE to visualize the data
+5.  Generate an interactive visualization of the k-NN graph
+6.  Construct a dendrogram to reveal hierarchical language relationships (only with the Indo-European language family)
+
+Note: k-NN classification relies on known language family groupings. Only languages with identified families are retained, excluding *Almean*, *Constructed languages*, and *Pidgins and Creoles* families due to their artificial or [pidgin/creole](https://www.britannica.com/topic/language/Pidgins-and-creoles) nature. Moreover, the languages named *written* or *numerals* will be excluded because they represent the written form of their respective languages.
+
+## Which distance is better?
+
+My idea (initially and because of [Ref: prev_post]) was to compare languages by looking at the positions of their numbers sorted alphabetically. I didn't have any hope that it would be great. It wasn't great. At all. This distance is somewhat random and doesn't retain relevant information. However, I think that stupid ideas sometimes (and only sometimes) lead you to interesting places.
+
+After the initial failure, I tried with a well-known distance for strings: [Levenshtein distance](https://en.wikipedia.org/wiki/Levenshtein_distance).
+
+The Levenshtein distance counts the minimum number of single-character edits (insertions, deletions, or substitutions) needed to change one string into the other. So, the smaller the Levenshtein distance between two strings, the more similar they are.
+
+We will now see an example of why we should make some modifications to define a new distance. If you have the strings "hello" and "hello", the Levenshtein distance is `r stringdist("hello", "hello", method = "lv")`. That makes sense. But here's the problem:
+
+| String 1 |  String 2  |                 Levenshtein Distance                 |
+|:----------------------:|:----------------------:|:----------------------:|
+|  hello   | hellozzzzz | `r stringdist("hello", "hellozzzzz", method = "lv")` |
+|  hello   |   azxyp    |   `r stringdist("hello", "azxyp", method = "lv")`    |
+
+Although both have the same Levenshtein distance of 5, would you say that both strings are at the same distance (equally similar/dissimilar)? We can address this by normalizing the distance.
+
+To do this, we divide the distance calculated by the maximum length of the strings s1 and s2 being compared ($max(length(\text{s1}),\,length(\text{s1}))$, where length is the number of characters of each string). The minimum distance is 0, while the maximum distance is set at 1:
+
+| String 1 |  String 2  |                                     Normalized Levenshtein Distance                                     |
+|:-----------------:|:-----------------:|:--------------------------------:|
+|  hello   | hellozzzzz | `r stringdist("hello", "hellozzzzz", method = "lv")/max(str_length("hello"), str_length("hellozzzzz"))` |
+|  hello   |   azxyp    |      `r stringdist("hello", "azxyp", method = "lv")/max(str_length("hello"), str_length("azxyp"))`      |
+
+This way, we can compare distances between strings of different lengths more fairly.
+
+We will compare different distance functions (the one based on alphabetically ordering, DL \[Damerau-Levenshtein\], Levenshtein and OSA \[Optimal String Alignment\]). These last three are string distance functions and variations of Levenshtein's idea. We will also compare the unmodified and normalized versions.
+
+As we already said, we will calculate the accuracy with the k-NN. First, we will see for which value of `k` we get the higher mean accuracy. As we can see in the table below, the best option is `k=1`.
+
+```{r}
+source("../functions/lang_dist_matrix.R", encoding = "UTF-8")
+source("../functions/kNN.R", encoding = "UTF-8")
+# n_df <- num_df_clean %>%
+#   filter_lang("lang_name != 'written' & lang_name != 'numerals' & group1 != 'Constructed languages' & group1 != 'Almean' & group1 != 'Pidgins and Creoles'")
+n_df <- num_df_gt_million
+groups <- paste0("group", 1:7)
+```
+
+```{r}
+dists <- c("lv", "osa", "dl")
+summary_df <- data.frame(Distance = character(), k = numeric(), group = character(), accuracy = numeric())
+
+for(norm in c(F,T)){
+  for(dist in dists){
+    dist_mat <- lang_dist_matrix(n_df, dist = dist, normalize = norm)
+    dist <- ifelse(norm == T, paste0(dist, "_norm"), dist)
+    for(k in 1:4){
+      res <- get_kNN(dist_mat, k=k)
+      acc <- sapply(groups, function(x, s){get_kNN_accuracy(x, s)}, s = res$summary)
+      summary_df <- summary_df %>% add_row(Distance = dist, k = k, group = c("Family", paste0("Subfamily ", 1:6)), accuracy = acc)
+    }
+  }
+  
+}
+
+dist_mat <- lang_pos_dist_matrix(n_df, dist = "manhattan")
+for(k in 1:4){
+  res <- get_kNN(dist_mat, k=k)
+  acc <- sapply(groups, function(x, s){get_kNN_accuracy(x, s)}, s = res$summary)
+  summary_df <- summary_df %>% add_row(Distance = "alphabetically", k = k, group = c("Family", paste0("Subfamily ", 1:6)), accuracy = acc)
+}
+
+summary_df %>%
+  filter(Distance != "alphabetically") %>% 
+  group_by(k) %>%
+  summarise(mean_acc = mean(accuracy, na.rm = T)) %>%
+  mutate(mean_acc = round(mean_acc, 4)) %>% 
+  arrange(desc(mean_acc)) %>% 
+  datatable(colnames = c("k", "Mean Accuracy"),
+            options = list(
+              dom = "t",
+              columnDefs = list(list(targets = 0, visible = F),
+                                list(targets = 1:2, orderable = FALSE, className = "dt-center"))))
+
+```
+
+For this value of `k`, we already see which are the distances with higher accuracy with the next plot. The normalized versions are slightly better than the unmodified ones. The accuracy with the distance based on the alphabetic sorting is awful.
+
+```{r, warning=F}
+summary_df %>%
+  filter(k == 1) %>%
+  mutate(Distance = factor(Distance, levels = c("alphabetically", "lv", "osa", "dl", "lv_norm", "osa_norm", "dl_norm"))) %>%
+  ggplot() +
+  geom_col(aes(x = group, y = accuracy, fill = Distance, group = Distance), position = "dodge2") +
+  xlab("Family") + 
+  ylab("Accuracy") +
+  scale_fill_manual(values=c("#eb7573", "#75d9a4", "#8fc0db", "#e0be70", "#18db73", "#239bde", "#E69F00")) +
+  theme_bw()
+```
+
+Finally, we show which is the mean accuracy for each distance.
+
+```{r}
+summary_df %>%
+  filter(k == 1) %>%
+  group_by(Distance) %>%
+  summarise(mean_acc = mean(accuracy, na.rm = T)) %>%
+  mutate(mean_acc = round(mean_acc, 4)) %>% 
+  arrange(desc(mean_acc)) %>% 
+  datatable(colnames = c("Distance", "Mean Accuracy"),
+            options = list(
+              dom = "t",
+              columnDefs = list(list(targets = 0, visible = F),
+                                list(targets = 1:2, orderable = FALSE, className = "dt-center"))))
+```
+
+### Best distance
+
+The distance we will use from now on is the normalized version of Damerau-Levenshtein. The accuracy score for the different families/subfamilies levels can be found in the next table. We have to take into account that with this method we cannot classify correctly some languages because we only have one sample from that family language (for example, [*Basque*](https://en.wikipedia.org/wiki/Basque_language), a language isolate). Because of this, correct classification can be achieved for only `r nrow(n_df)-nrow(lang_df %>% filter(lang_id %in% n_df$lang_id) %>% count(group1) %>% filter(n == 1))` out of the `r nrow(n_df)` languages in this set.
+
+```{r}
+dist_mat <- lang_dist_matrix(n_df, dist = "dl")
+res <- get_kNN(dist_mat, k=1)
+acc <- sapply(groups, function(x, s){get_kNN_accuracy(x, s)}, s = res$summary)
+acc1 <- acc[1]
+acc <- as.data.frame(t(as.matrix(round(acc, 4)))) %>%
+  mutate(acc = "Accuracy", .before = "group1")
+names(acc) <- c(" ", "Family", paste0("Subfamily ", 1:6))
+acc %>% 
+  datatable(options = list(
+              dom = "t",
+              columnDefs = list(list(targets = 0, visible = F),
+                                list(targets = 1:8, orderable = FALSE, className = "dt-center"))))
+```
+
+### Why do we get so good results?
+
+When I first saw these accuracy results, I was a little bit surprised. I thought I would get an accuracy for the first-level family of 0.6-0.8. Instead, what we got here is that we correctly classified `r acc1*nrow(n_df)` out of `r nrow(n_df)` languages (`r paste0(round(acc1*100, 2), "%")`). 
+
+I had some intuition on why it worked so well. But I wanted to explore if anyone had already investigated it. I found [@calude2021history], which explains:
+
+>Lexical replacement rates vary enormously among words and among languages. In words that linguists believe to be the least rapidly changing within a given language, namely words that designate basic vocabulary terms, like foot, green, man, dirty, husband, wife, mother, and including numbers one through to five—a collection of words termed the Swadesh List (named after Morris Swadesh, who formulated various such lists)—rates of lexical replacement can still vary between word-forms as much as 100-fold [7, p. 8]. But number words stand out as being among the most conservatively preserved word-forms even in such basic vocabulary lists [7]. Remarkably, in the Indo-European language family, a single cognate set can be traced throughout its entire history, indicating astonishing agreement across speakers and time [7]. Put another way, speakers of Indo-European languages have preserved ancestral forms for low-limit numbers with extreme fidelity over thousands of years of language change.
+
+https://www.ncbi.nlm.nih.gov/pmc/articles/PMC8059502/#RSTB20200206C1
+https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5784043/
+
+Interesting enough, I had to read the article it was referencing to ([7]), which is [@pagel2017deep]
+
+## Dimensionality reduction
+
+In order to visualize the different clusters corresponding to the language families, we will use two dimensionality reduction techniques: MDS and tSNE. We will not use the set of +3000 languages, but a smaller one of (178) languages which have +1 million speakers.
+
+I will not explain how MDS or tSNE [@tsne] work (for that, I recommend [this](https://www.youtube.com/watch?v=GEn-_dAyYME) and [this](https://www.youtube.com/watch?v=RJVL80Gg3lA&list=UUtXKDgv1AVoG88PLl8nGXmw)), since it's not the main goal of this post.
+
+### MDS
+
+Using MDS, it appears feasible to distinguish families with a larger number of languages, such as Indo-European and Niger-Congo, while the remaining languages are clustered together. It's important to note that in MDS, the x, y, and z axes lack an interpretable meaning.
+
+Note: You can click on any image to make it bigger.
+
+```{r}
+source("../functions/plotters.R", encoding = "UTF-8")
+pals <- c("vapoRwave::vapoRwave", "vapeplot::vaporwave", "PrettyCols::Rainbow",
+          "ggthemes::Classic_Cyclic", "awtools::bpalette", "ggthemes::Hue_Circle")
+
+pal <- paletteer_d("vapeplot::vaporwave")
+
+dist_mat <- lang_dist_matrix(num_df_gt_million, dist = "dl")
+mds <- cmdscale(dist_mat, eig=TRUE, k=3)$points
+mds_df <- data.frame(mds) %>%
+  rename(x = X1, y = X2, z = X3) %>%
+  rownames_to_column("lang_id") %>%
+  mutate(lang_id = as.integer(lang_id)) %>%
+  left_join(lang_df, by = "lang_id")
+
+plot_langs(mds_df, pal, d=2, sort_color_by=T)
+```
+
+Here's a 3D plot that you can interact with. You can observe that adding a third dimension helps to separate some clusters like _Sino-Tibetan_ or _Tai_ (yellow/orange colors). Still, there are many points clustered in the center.
+
+```{r, warning=F}
+plot_langs(mds_df, pal, d=3, sort_color_by=T)
+```
+
+### tSNE
+
+With tSNE, it seems that we can capture both the local and global structure of the data. The different language families are more apart from each other and, moreover, language families that are somewhat related (Tai and Sino-Tibetan) are close to each other. As in MDS, the x, y, and z axes do not have an interpretable meaning.
+
+```{r}
+set.seed(666)
+
+tsne_2D <- Rtsne(dist_mat, dims = 2, is_distance = T, perplexity = 50, pca = F, max_iter = 5000)$Y
+tsne_3D <- Rtsne(dist_mat, dims = 3, is_distance = T, perplexity = 50, pca = F, max_iter = 5000)$Y
+lang_ids <- as.integer(names(dist_mat))
+
+tsne_2D_df <- data.frame(tsne_2D) %>%
+  rename(x = X1, y = X2) %>% 
+  mutate(lang_id = lang_ids) %>% 
+  left_join(lang_df, by = "lang_id")
+
+tsne_3D_df <- data.frame(tsne_3D) %>%
+  rename(x = X1, y = X2, z = X3) %>% 
+  mutate(lang_id = lang_ids) %>% 
+  left_join(lang_df, by = "lang_id")
+
+plot_langs(tsne_2D_df, pal, d=2, sort_color_by=T)
+```
+
+In the 3D plot, it becomes easier to assess how well tSNE performed.
+
+```{r, warning=F}
+plot_langs(tsne_3D_df, pal, d=3, sort_color_by=T)
+```
+
+## k-Nearest Neighbors graph
+
+If you prefer a simpler interface, you can explore a k-NN graph here. You have selectors to highlight family groups or languages and zoom in to observe closely related languages. We are using the same layout of points from tSNE but we have added some jitter to the points to prevent overlap with the language name labels.
+
+I highly recommend interacting with it: click on any language, and it will highlight its neighbors. As in previous examples, we use `k=1`.
+
+```{r}
+source("../functions/kNN_graph.R", encoding = "UTF-8")
+source("../functions/graph_plotters.R", encoding = "UTF-8")
+
+g <- get_kNN_graph(dist_mat, k=1)
+
+V(g)$group <- V(g)$group1
+V(g)$color <- color_map(V(g)$group, pal, assign=T, sort_vec=T)
+
+set.seed(666)
+tsne_jitter <- tsne_2D
+tsne_jitter[, 1] <- tsne_2D[, 1] + rnorm(nrow(tsne_2D), mean = 0, sd = 0.3)
+tsne_jitter[, 2] <- tsne_2D[, 2] + rnorm(nrow(tsne_2D), mean = 0, sd = 0.6)
+
+show_table_legend(sort(V(g)$group), pal)
+
+plot_graph(g, dim=2, layout=tsne_jitter)
+```
+
+## Hierarchical clustering
+
+We carried out a hierarchical cluster analysis using the McQuitty agglomeration (linkage) method to explore the linguistic relationships within the Indo-European language family. The decision to focus on Indo-European languages was intentional for two reasons. Firstly, the Indo-European language family stands out as one of the most thoroughly researched and widely recognized language families in linguistics; therefore, we have greater certainty about the established subfamilies. Secondly, by selecting a reduced subset, we simplify the visualization.
+
+Note: Every dendrogram will be preceded by a legend, providing clarity on the color scheme used to represent different language subfamilies.
+
+For this first dendrogram, we color-coded each language based on its first subfamily. By visualizing the dendrogram in this manner, we gain insights into the higher-level relationships among language subfamilies, such as Germanic, Romance, Slavic, and others.
+
+```{r}
+l_df <- lang_df %>% filter(gt_million, group1 == "Indo-European")
+n_df <- num_df_clean %>% filter(lang_id %in% l_df$lang_id)
+dist_mat <- lang_dist_matrix(n_df, dist = "dl")
+
+hc <- hclust(dist_mat, method = "mcquitty")
+labels(hc) <- l_df %>% pull(lang_name)
+hc$color_by <- l_df$group2
+
+pal <- paletteer_d("PrettyCols::Rainbow")
+show_table_legend(l_df$group2, pal)
+
+plot_dendrogram(hc, pal, sort_color_by=F)
+```
+
+In this second dendrogram, we opted to color-code each language according to its deepest subfamily possible within the Indo-European family tree. For instance, if two languages belong to the same subfamily but diverge at deeper levels, they will be represented with distinct colors in the dendrogram. This approach tries to visualize with finer detail how Indo-European languages are connected and how they've evolved. Although the dendrogram is not perfect, I would say it is quite good and approximates the established subfamilies.
+
+```{r}
+gr <- str_replace_all(paste(l_df$group2, l_df$group3, l_df$group4, 
+                        l_df$group5, l_df$group6, l_df$group7, sep = "➜"), "➜NA" ,"")
+hc$color_by <- gr
+
+show_table_legend(gr, pal, n_per_split = 6, count = F)
+
+plot_dendrogram(hc, pal, sort_color_by=F)
+```
+
+
+# Main takeaways
+
+The journey has come to an end. We learnt about 
+
+Check out the Shiny app here: [Ref: shiny_app].
+

@@ -1,0 +1,37 @@
+---
+title: "What is this for?"
+date: "01-02-2024"
+description: "A brief explanation"
+---
+
+# This was a triumph! 
+
+I'm making a blog here.
+
+```{=html}
+<iframe width="560" height="315" src="https://www.youtube.com/embed/SXRteMSSZ14?si=a3KmZm8cFCfd4r0a" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen style="border-radius: 30px"></iframe>
+```
+
+# What is this blog for?
+
+This is a personal blog. _Personal_ means I have the freedom to write about anything that interests me and, more importantly, to do so when I like. Don't expect regular updates – this won't be a daily, weekly, or even monthly affair. This is not a newsletter. I imagine this as a shelf of personal experiences. After I finish something I've worked on and consider meaningful, I place it on the shelf. A public library of my personal experiences (related to data science).
+
+You can also consider it as an observer's notebook. I believe I'm a very observant person. I tend to notice details that escape the attention of the vast majority. Here, you will find the thought process of some projects I've worked on, small projects, ideas, thoughts... or anything that catches my attention. 
+
+Having explained that, the question that naturally arises is...
+
+# Who am I talking to?
+
+Since I make this blog public on the Internet, it's obvious that _anyone_ can read it. But that doesn't mean my target audience is _anyone_. Why would _anyone_ care about some data science projects?
+
+I don't really know how you got here. Maybe you're working on a task that is similar to something I've done. You may end up saving some time, you may come up with a different solution than the one you had in mind... or maybe you just want to learn about the projects I've worked on. Either way, I hope you find great value in the mistakes and successes I've had so far. I believe there's always something to learn or discover.
+
+I'm also talking to my future self. As I said before, I want to think about this blog as a notebook or repository of my observations during my journey as a data scientist. But I could do this without making it public, so let's ignore this case.
+
+# The End of the Beginning
+
+The other sections begin with a question. This one doesn't.
+
+Life constantly asks you questions  (many people believe that they are the ones asking the questions, although it's the opposite). When life comes to an end, it stops asking, since you cannot answer. When life comes to an end, you must quote something and remain silent, leaving the echo alive:
+
+> Think of all the things we learned for the people who are still alive.

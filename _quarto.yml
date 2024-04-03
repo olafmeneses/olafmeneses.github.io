@@ -3,18 +3,25 @@ project:
   output-dir: docs
 
 website:
-  title: "olafmeneses.github.io"
+  title: "Olaf Meneses"
+  site-url: https://olafmeneses.github.io
+  description: "Projects, thoughts and "
   navbar:
-    left:
-      - href: index.qmd
-        text: Home
-      - about.qmd
+    right:
+      - text: Blog
+        href: blog.qmd
+      - text: About
+        href: index.qmd
+      - icon: rss
+        href: blog.xml
 
 format:
   html:
-    theme: cosmo
-    css: styles.css
+    theme: 
+      light: litera
+      dark: vapor
+    page-layout: full
     toc: true
 
-editor: visual
+editor: source
 

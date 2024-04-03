@@ -1,0 +1,18 @@
+---
+title: "Blog"
+image: headshot.jpg
+listing:
+  contents: 
+    - posts/new/*.qmd
+    - posts/LangNums/**/*.qmd
+  type: grid
+  fields: [date, title, description, categories]
+  sort:
+    - "date desc"
+    - "title desc"
+  date-format: "full"
+  feed: true
+page-layout: full
+title-block-banner: false
+---
+

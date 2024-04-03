@@ -1,0 +1,12 @@
+At the beginning include:
+
+---
+bibliography: references.bib
+---
+
+In the corpus:
+
+
+>A *field guide* is a book designed to help the reader identify wildlife (flora or fauna or funga) or other objects of natural occurrence (e.g. rocks and minerals)
+>
+>[@wiki:Field_guide].

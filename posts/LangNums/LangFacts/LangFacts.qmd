@@ -1,0 +1,250 @@
+---
+title: "On sorting numbers alphabetically in different languages and other absurdities"
+description: "First contact with numbers 1-10 across +5000 languages and curious insights"
+author: "Olaf Meneses"
+date: "2024-03-31"
+bibliography: references.bib
+output: manuscript
+lightbox: auto
+format:
+  html:
+    fig-format: svg
+    code-fold: true
+    css: style.css
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = F)
+options(dplyr.summarise.inform = FALSE)
+```
+
+```{r lib, echo=F, include=F}
+# Needed libraries
+
+packages = c("knitr","tidyverse", "stringi", "assertthat", "DT")
+
+# Install and load above packages
+
+package.check <- lapply(packages, FUN = function(x) {
+  if (!require(x, character.only = TRUE)) {
+    install.packages(x, dependencies = TRUE)
+    library(x, character.only = TRUE)
+  }
+})
+```
+
+Have you ever wondered if we could compare languages simply by examining their first N number names, sorted alphabetically? It may seem absurd but intriguing at the same time. This was the question that came to my mind about a year ago. 
+
+Initially, I wanted to tackle this question in one post. However, as I explored the data further, I realized there was much more to uncover than I initially thought. Therefore, I've decided to split our journey into two separate posts.
+
+This post will serve as an introduction. We'll find out some interesting and fun facts from our first look into the data. But wait, there's more! The real fun is coming up in the next post [Ref: next post], which promises to be even more exciting and interesting (and colorful).
+
+As an added bonus, I've created a Shiny app where you can visualize +3800 languages in an interactive 3D plot. I personally think it's awesome. Even though I called it a bonus, it's so cool that it could be the main result of this project. Check out the Shiny app here [Ref: shiny app]!
+
+I hope you find this initial exploration as fascinating as I did, where you'll discover some languages you probably didn't even know existed and some odd facts about them!
+
+# Why?
+
+One day, about one year ago, while I was on the metro, I wondered if I could compare languages by looking at their first N number names sorted alphabetically. I remember typing down that note on my phone. I started with three languages which I know pretty well. The note was something similar to this:
+
+|     Language      | Number names                                          | Sorted                                                | Number sequence      |
+|:----------------:|--------------------|------------------|------------------|
+|      English      | one two three four five six seven eight nine ten      | eight five four nine one seven six ten three two      | 8-5-4-9-1-7-6-10-3-2 |
+| Español (Spanish) | uno dos tres cuatro cinco seis siete ocho nueve diez  | cinco cuatro diez dos nueve ocho seis siete tres uno  | 5-4-10-2-9-8-6-7-3-1 |
+| Euskera (Basque)  | bat bi hiru lau bost sei zazpi zortzi bederatzi hamar | bat bederatzi bi bost hamar hiru lau sei zazpi zortzi | 1-9-2-5-10-3-4-6-7-8 |
+
+: {.striped .hover}
+
+Complete nonsense, right? I thought it was somewhat interesting.
+
+# Where's the data?
+
+At first, I found the table [@wiktionary_numbers] that could be useful. This table included the names of numbers from 0 to 9 in 139 languages. I made a script to obtain the data but, two days later, I came across the webpage [@zompist_numbers] which didn't have 139 languages but +5000!!! That's crazy, to say the least.
+
+I could've scraped the data directly from the html but that would've been a lot of work. Instead, I tried to figure out if the web was getting the information from a csv or txt file. It was, indeed. The plain text can be found here, which cannot be accessed directly from the web page: <http://www.zompist.com/nums.txt>.
+
+After a little bit (more than what I had thought) of preprocessing work, I extracted all of the information from the plain text file and created two csv files with the information of languages and their number names.
+
+```{r}
+lang_df <- read_csv("../data/lang_df.csv", show_col_types = F)
+num_df <- read_csv("../data/num_df.csv", show_col_types = F)
+```
+
+We have the following information about the languages:
+
+-   Language name
+-   If they're extinct or not
+-   If they have more than 1 million speakers or not
+-   The parent language
+-   Group 1-7: Group 1 corresponds to the language family. Group 2 is the subgroup within Group 1. Group 3 is the subgroup within Group 2... Each subsequent group is a subset of the previous one.
+
+For example, in the case of English, we would have:
+
+```{r}
+source("../functions/data_to_table.R", encoding = "UTF-8")
+lang_df %>%
+  filter(lang_name == "English") %>% 
+  select(-lang_id) %>% 
+  show_lang_num(ids = F, dom = "t")
+```
+
+# Have a look at all the languages!
+
+With this table you can access some information (only showing the family but not subfamilies) about each language and the names of its numbers.
+
+```{r, warning=F}
+show_lang_num(lang_df$lang_id)
+```
+
+# Data Preprocessing
+
+We will only keep the languages which have all the numbers from 1 to 10 (not every language needs that many numbers). In order to compare them properly, we will need some preprocessing: convert the text to lowercase, remove non-alphabetic characters and replace accented characters.
+
+```{r}
+# We will use a subset of the original dataframe
+source("../functions/clean_data.R", encoding = "UTF-8")
+
+num_df_clean <- num_df %>% 
+  mutate(across(N1:N10, ~remove_non_alphabetic(.x))) %>% 
+  filter(if_all(N1:N10, ~!is.na(.x))) %>% 
+  filter(if_all(N1:N10, ~not_empty(.x)))
+
+# Filtered num_df_clean to only include a reduced number of languages,
+# the ones with more than 1 million speakers
+num_df_gt_million <- num_df_clean %>%
+  filter_lang("gt_million")
+
+tidy_num_df <- num_df_clean %>%
+  pivot_longer(cols = N1:N10, names_to = "number", values_to = "num_name") %>% 
+  mutate(number = as.integer(str_replace(number, "N", "")))
+
+# Dataframe with the ordered position of each number; a structure simpler to work with
+ranked_num_df <- tidy_num_df %>% 
+  arrange(lang_id, num_name) %>% 
+  mutate(position = rep(1:10, nrow(tidy_num_df)/10))
+```
+
+After doing this, we are left with `r nrow(num_df_clean)` languages (initially, we had `r nrow(num_df)` languages).
+
+# Let's play!
+
+Now that we have preprocessed the data, we can start playing with it. Here we will see some fun facts that I found out.
+
+Note: We must be aware that sorting in alphabetical order doesn't have any meaning in many languages. We are doing this just because we're curious about the results.
+
+## First becomes last
+
+We start by identifying which languages have the number 1 in the last position. We do it first for a subset of languages which have +1 million speakers (`r nrow(num_df_gt_million)` languages).
+
+```{r}
+FBL <- function(df){
+  df %>% 
+    filter(number == 1, position == 10) %>%
+    pull(lang_id)
+}
+
+fbl_all <- FBL(ranked_num_df)
+
+fbl_gt_million <- FBL(ranked_num_df %>% filter_lang("gt_million"))
+
+show_lang_num(fbl_gt_million)
+```
+
+Below you can find the extended version for the set of `r nrow(num_df_clean)` languages.
+
+```{r}
+show_lang_num(fbl_all)
+```
+
+Curious fact: the percentage of languages exhibiting this phenomenon remains consistent across datasets of different sizes (first set has `r nrow(num_df_gt_million)` languages and the other one +3800).
+
+|        Dataset size         |                                 \% of languages with phenomenon                                 |
+|:-------------------------:|:-------------------------------------------:|
+| `r nrow(num_df_gt_million)` |                   `r round(100 * (length(fbl_all)/nrow(ranked_num_df)), 2)`%                    |
+|   `r nrow(num_df_clean)`    | `r round(100 * (length(fbl_gt_million)/nrow(ranked_num_df %>% filter_lang("gt_million"))), 2)`% |
+
+: {.striped .hover}
+
+## Perfect alphabetical sorting
+
+Which languages have their numbers perfectly sorted when the number names are sorted alphabetically?
+
+```{r}
+num_equal_position_count <- function(lang_df, ranked_num_df, min_count){
+  ranked_num_df %>% 
+    filter(number == position) %>% 
+    group_by(lang_id) %>% 
+    count() %>% 
+    arrange(desc(n)) %>% 
+    filter(n >= min_count) %>% 
+    pull(lang_id)
+}
+
+show_lang_num(num_equal_position_count(lang_df, ranked_num_df, min_count = 10), dom = "t", pageLength = 10)
+```
+
+Looking at the results, we can see that the first language is *Afro-Asiatic numerals*, where sorting alphabetically doesn't make any sense (they are characters used to represent the numbers).
+
+Regarding the rest of the languages, it's noteworthy that most of them belong to the family of *Constructed languages*. Let's take a look at *Langue nouvelle*:
+
+```{r}
+show_lang_num(lang_df$lang_id[lang_df$lang_name == "Langue nouvelle"], dom = "t")
+```
+
+> Langue nouvelle (French for 'new language') is a grammatical sketch for a proposed artificial international auxiliary language presented in 1765 by Joachim Faiguet de Villeneuve, a French economist, in the ninth volume of Diderot's encyclopedia. \[...\] Each numeral starts with a different consonant, and are in alphabet order.
+>
+> [@wikipedia_langue_nouvelle]
+
+This is interesting. Considering that the alphabet itself is a product of human invention, it becomes improbable for the initial N numbers of any language (which use an alphabet) to be arranged alphabetically by chance. Out of +3800 languages only 8 have their first 10 numbers sorted in alphabetical order perfectly. From those 8, 75% of them are constructed languages.
+
+Therefore, we can conclude that this feature arises from deliberate design rather than occurring by chance or natural evolution. I was hoping that more (non-artificial) languages would have this feature, but it's rarer than I thought.
+
+## Which is the language with most characters for all numerals?
+
+Whoa! What's happening here? 241 characters to say only the numbers 1 to 10?
+
+```{r}
+data <- num_df %>%
+  mutate(char_count = str_length(paste0(N1,N2,N3,N4,N5,N6,N7,N8,N9,N10))) %>%
+  arrange(desc(char_count)) %>%
+  inner_join(lang_df, by = "lang_id") %>% 
+  select(lang_name, group1, char_count, N1:N10) %>% 
+  slice_head(n = 1)
+
+show_lang_num(data, ids = F, dom = "t")
+```
+
+Actually, you can take a look at what's happening with the *Sissano* language. You can see that it's repeating the previous numbers. We can identify a structure like this one (where we replace the names of the numbers between brackets):
+
+|    1     |   2   |       3       |       4        |       5        |       6        |      7      |       8        |       9        |       10       |
+|:------:|:------:|:------:|:------:|:------:|:------:|:------:|:------:|:------:|:------:|
+| pontanen | entin | \[2\] e \[1\] | \[2\] ke \[2\] | \[4\] ke \[1\] | \[4\] ke \[2\] | \[6\] \[1\] | \[6\] ke \[2\] | \[8\] ke \[1\] | \[8\] ke \[2\] |
+
+: {.striped .hover}
+
+*Sissano* only has number names for 1, 2 and a few [@parker_sissano]. The remaining numbers are formed by combining the names of 1 and 2. It's using a base-2 (or binary) numeral system.
+
+## And with the least number of characters?
+
+Exceptuating (again) the languages where we have the numerals or the written form of the numbers, the majority of them are constructed languages. Seems like there are some languages which assign the vocal letters {a,e,i,o,u} to the numbers following some order. I've been trying to find some information about this but haven't found anything interesting. The only thing I know is that *Zahlensprache* means *Number language*.
+
+```{r}
+data <- num_df %>%
+  mutate(char_count = str_length(paste0(N1,N2,N3,N4,N5,N6,N7,N8,N9,N10))) %>%
+  arrange(char_count) %>%
+  inner_join(lang_df, by = "lang_id") %>% 
+  select(lang_name, group1, char_count, N1:N10) %>% 
+  slice_head(n = 5)
+
+show_lang_num(data, ids = F, dom = "t")
+```
+
+# What's next?
+
+In this post, we didn't really address my initial question: could we compare languages by looking at their first N number names sorted alphabetically? The initial idea was to answer it in the following section, but, as I explained in the [Ref: #Motivation] section, I decided to include it in a different post. You can find it here: [Ref: next post]. It's way more interesting than this introductory post!
+
+Moreover, I developed a Shiny app in which you get to visualize +3800 languages in an interactive 3D plot, which I think is pretty cool. You can have a look at it here [Ref: shiny app].
+
+Hope you enjoyed this initial post where we had a sneak peek into the number names of many languages and some interesting facts.
+
+You can leave a comment down below, subscribe to my newsletter or send me an email at [Ref include email] if you have any question. See you in the next post!

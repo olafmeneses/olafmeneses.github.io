@@ -1,11 +1,44 @@
 ---
-title: "olafmeneses.github.io"
+title: ""
+image: profile2.png
+about: 
+  template: trestles
+  image-shape: round
+  image-width: 23em
+  links:
+    - text: LinkedIn
+      href: https://www.linkedin.com/in/olaf-meneses/
+    - text: Twitter
+      href: https://twitter.com/wooflaf
+    - text: GitHub
+      href: https://github.com/olafmeneses
+    - text: Email
+      href: mailto:menesesolaf@gmail.com
 ---
 
-This is a Quarto website.
+```{=html}
+ <div style="text-align: justify">
+```
 
-To learn more about Quarto websites visit <https://quarto.org/docs/websites>.
+# Hello!
 
-```{r}
-1 + 1
+I'm Olaf, currently a third-year Data Science student at the University of Valencia. I have a strong foundation in key data science disciplines, a proven track record of academic excellence, and a passion for data-driven insights and innovation.
+
+### Academic Excellence
+Throughout my academic journey, I have consistently demonstrated my dedication to excellence. Only in the last two years, I have earned a total of 20 distinctions with Honors in various subjects, including: Statistical Inference, Databases, Data Processing, Data Visualization...
+
+### Awards and Recognition
+
+- First prize in the II Valencia SDG Data Visualization Contest (Sep. 2022), with the project [_Ruzafapp_](https://olafmeneses.shinyapps.io/ruzafapp).
+
+- Second prize in the Valencia SDG Data Visualization Contest (Sep. 2023), with the project [_VLC TrànsitAire_](https://olafmeneses.shinyapps.io/transitaire), where I collaborated with a team of five members.
+
+- Top 1% of University Entrance Exam (PAU) scores at the University of Valencia, out of nearly 7000 students.
+
+### Not everything is Data Science
+
+Beyond data science, I have a diverse range of passions, including exploring second-hand bookstores, finding inspiration in poetry and literature, and embarking on urban (and not so urban) adventures on foot. 
+
+```{=html}
+</div>
 ```
