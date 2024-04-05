@@ -420,7 +420,7 @@ plot_dendrogram(hc, pal, sort_color_by=F)
 ```
 
 
-# Main takeaways
+# A look back
 
 As we conclude this journey, it's amazing to think back to how it all started — a simple note written down while I was on the metro, as mentioned in [On sorting numbers alphabetically in different languages and other absurdities](../LangFacts/LangFacts.qmd)). Now, after more than a month of work, it culminates in two detailed posts and a Shiny app. I'm more than happy with the results I got. Are they gonna change the world? Probably not. Did I enjoy the process of reading about number systems in different languages? Absolutely! And I hope that you enjoyed it too.
 
