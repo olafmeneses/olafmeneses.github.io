@@ -1,0 +1,9 @@
+---
+title: Ruzafapp
+description: |
+    Interactive app that maps and visualizes noise levels in Valencia's Ruzafa neighborhood, enhancing awareness and community well-being.
+image: /images/ruzafapp.png
+---
+Link (English): [https://wooflaf.shinyapps.io/ruzafapp](https://wooflaf.shinyapps.io/ruzafapp)
+Link (Spanish): [https://olafmeneses.shinyapps.io/ruzafapp](https://olafmeneses.shinyapps.io/ruzafapp)
+Post under construction...

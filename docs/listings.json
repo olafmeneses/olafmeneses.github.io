@@ -1,10 +1,16 @@
 [
   {
-    "listing": "/blog.html",
+    "listing": "/blog/index.html",
     "items": [
-      "/posts/LangNums/LangClust/LangClust.html",
-      "/posts/LangNums/LangFacts/LangFacts.html",
-      "/posts/new/init.html"
+      "/blog/posts/LangNums/LangClust/LangClust.html",
+      "/blog/posts/LangNums/LangFacts/LangFacts.html",
+      "/blog/posts/init/init.html"
+    ]
+  },
+  {
+    "listing": "/projects/index.html",
+    "items": [
+      "/projects/LangNet.html"
     ]
   }
 ]

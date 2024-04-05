@@ -1,0 +1,8 @@
+---
+title: Del Fuego Al Dato
+description: |
+    An interactive tool to understand Wildfires in Castilla y León
+image: /images/Junta_CyL.png
+---
+Link (Spanish): [https://olafmeneses.shinyapps.io/delfuegoaldato](https://olafmeneses.shinyapps.io/delfuegoaldato)
+Post under construction...

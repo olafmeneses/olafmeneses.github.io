@@ -1,0 +1,8 @@
+---
+title: LangNet
+description: |
+    Exploring language families through numbers 1 to 10
+image: /images/LangNet.png
+---
+Link (English): [https://olafmeneses.shinyapps.io/LangNet](https://olafmeneses.shinyapps.io/LangNet)
+Post under construction...

@@ -1,0 +1,12 @@
+---
+title: Projects
+---
+
+This post is still under construction. Click on the images to navigate to the respective project links.
+
+::: {#projects}
+[![](/images/LangNet.png){width=450px}](/projects/LangNet.qmd)
+[![](/images/Junta_CyL.png){width=450px}](/projects/DelFuegoAlDato.qmd)
+[![](/images/transitaire.png){width=450px}](/projects/transitaire.qmd)
+[![](/images/ruzafapp.png){width=450px}](/projects/ruzafapp.qmd)
+:::

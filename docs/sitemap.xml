@@ -1,31 +1,43 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://olafmeneses.github.io/posts/new/test.html</loc>
-    <lastmod>2024-01-02T21:06:50.093Z</lastmod>
+    <loc>https://olafmeneses.github.io/blog/index.html</loc>
+    <lastmod>2024-04-05T16:38:38.696Z</lastmod>
+  </url>
+  <url>
+    <loc>https://olafmeneses.github.io/blog/posts/LangNums/LangFacts/LangFacts.html</loc>
+    <lastmod>2024-04-05T15:43:34.150Z</lastmod>
   </url>
   <url>
     <loc>https://olafmeneses.github.io/index.html</loc>
-    <lastmod>2024-04-03T10:28:04.793Z</lastmod>
+    <lastmod>2024-04-05T15:37:10.290Z</lastmod>
   </url>
   <url>
-    <loc>https://olafmeneses.github.io/blog.html</loc>
-    <lastmod>2024-03-29T23:04:33.003Z</lastmod>
+    <loc>https://olafmeneses.github.io/blog/posts/init/init.html</loc>
+    <lastmod>2024-04-05T16:30:03.403Z</lastmod>
   </url>
   <url>
-    <loc>https://olafmeneses.github.io/posts/new/init.html</loc>
-    <lastmod>2024-01-03T21:02:48.930Z</lastmod>
+    <loc>https://olafmeneses.github.io/blog/posts/LangNums/LangClust/LangClust.html</loc>
+    <lastmod>2024-04-05T16:37:05.981Z</lastmod>
   </url>
   <url>
-    <loc>https://olafmeneses.github.io/posts/LangFacts/LangFacts.html</loc>
-    <lastmod>2024-03-29T22:28:21.569Z</lastmod>
+    <loc>https://olafmeneses.github.io/projects/LangNet.html</loc>
+    <lastmod>2024-04-05T16:15:11.188Z</lastmod>
   </url>
   <url>
-    <loc>https://olafmeneses.github.io/posts/LangNums/LangFacts/LangFacts.html</loc>
-    <lastmod>2024-03-31T19:58:07.071Z</lastmod>
+    <loc>https://olafmeneses.github.io/projects/index.html</loc>
+    <lastmod>2024-04-05T16:19:18.974Z</lastmod>
   </url>
   <url>
-    <loc>https://olafmeneses.github.io/posts/LangNums/LangClust/LangClust.html</loc>
-    <lastmod>2024-03-31T22:11:41.799Z</lastmod>
+    <loc>https://olafmeneses.github.io/projects/DelFuegoAlDato.html</loc>
+    <lastmod>2024-04-05T16:25:19.477Z</lastmod>
+  </url>
+  <url>
+    <loc>https://olafmeneses.github.io/projects/transitaire.html</loc>
+    <lastmod>2024-04-05T16:29:54.406Z</lastmod>
+  </url>
+  <url>
+    <loc>https://olafmeneses.github.io/projects/ruzafapp.html</loc>
+    <lastmod>2024-04-05T16:28:17.006Z</lastmod>
   </url>
 </urlset>

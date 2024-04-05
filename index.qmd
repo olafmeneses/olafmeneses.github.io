@@ -1,13 +1,13 @@
 ---
 title: ""
-image: profile2.png
+image: /images/profile/2x/profile.png
 about: 
   template: trestles
   image-shape: round
   image-width: 23em
   links:
     - text: LinkedIn
-      href: https://www.linkedin.com/in/olaf-meneses/
+      href: https://www.linkedin.com/in/olaf-meneses/en
     - text: Twitter
       href: https://twitter.com/wooflaf
     - text: GitHub

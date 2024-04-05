@@ -1,0 +1,109 @@
+function(input, output, session) {
+  
+  embedding_ls <- reactiveValues(historic = NULL)
+  
+  observeEvent(
+    {
+      input$edges
+      input$embedding
+      input$color_by_group
+      input$filter_group
+    }, 
+    {
+      embedding_ls$historic <- c(embedding_ls$historic, input$embedding)
+      prev_idx <- ifelse(length(embedding_ls$historic) == 1, 1, length(embedding_ls$historic) - 1)
+      embedding_ls$current_embedding <- embedding_ls$historic[length(embedding_ls$historic)]
+      embedding_ls$prev_embedding <- embedding_ls$historic[prev_idx]
+    }
+  )
+  
+  color_graph <- reactive({
+    g_mod <- g
+    if (!(input$edges)){
+      g_mod <- g_mod-E(g_mod)
+    }
+    
+    V(g_mod)$label <- sprintf(V(g_mod)$label, process_labels("group1", input$color_by_group),
+                              process_labels("group2", input$color_by_group),
+                              process_labels("group3", input$color_by_group),
+                              process_labels("group4", input$color_by_group),
+                              process_labels("group5", input$color_by_group),
+                              process_labels("group6", input$color_by_group),
+                              process_labels("group7", input$color_by_group),
+                              vertex_attr(g_mod, input$color_by_group),
+                              replace(vertex_attr(g_mod, paste0(input$color_by_group, "_nbor")),
+                                      is.na(vertex_attr(g_mod, paste0(input$color_by_group, "_nbor"))),
+                                      "<span style='color: rgb(255 255 255 / 52%);'>Undefined</span>"))
+    
+    g_selected <- vertex_attr(g_mod, input$color_by_group)
+    V(g_mod)$group <- g_selected
+    V(g_mod)$group <- ifelse(V(g_mod)$group1 %in% input$filter_group, V(g_mod)$group, NA)
+    if(input$color_by_group == "group1"){
+      V(g_mod)$color <- color_mapping_g1[V(g_mod)$group]
+    }
+    else{
+      V(g_mod)$color <- color_map(V(g_mod)$group, pal=pal, assign = T)
+    }
+    
+    return(g_mod)
+  })
+  
+  output$distPlot <- renderScatterplotThree({
+    
+    if(req(embedding_ls$current_embedding) == req(embedding_ls$prev_embedding)){
+      p <- plot_graph(color_graph(), dim=3, layout=eval(parse(text = embedding_ls$current_embedding)),
+                 main = HTML("<h2 style='text-align:left; margin-left: 20px; font-size: 28px; color: rgb(255 255 255 / 62%);'>Hover for language & family info</h2>"))
+    }
+    else{
+      if(embedding_ls$prev_embedding == "tsne" & embedding_ls$current_embedding == "mds"){
+        p <- plot_graph(color_graph(), dim=3, layout=list(tsne, mds), fpl=400, 
+                   main = HTML("<h2 style='text-align:left; margin-left: 20px; font-size: 28px; color: rgb(255 255 255 / 62%);'>Hover for language & family info</h2>"))
+      }
+      else if(embedding_ls$prev_embedding == "mds" & embedding_ls$current_embedding == "tsne"){
+        p <- plot_graph(color_graph(), dim=3, layout=list(mds, tsne), fpl=400, 
+                   main = HTML("<h2 style='text-align:left; margin-left: 20px; font-size: 28px; color: rgb(255 255 255 / 62%);'>Hover for language & family info</h2>"))
+      }
+    }
+    p$elementId <- NULL
+    p
+    
+  })
+  
+  observeEvent(input$info_bttn, {
+    shinyalert(
+      title = "<h2 style = 'font-size: 36px; color: rgb(0,0,0, 95%); margin: 0; margin-bottom:10px;'>LangNet</h2><h3 style = 'font-size: 30px; margin-bottom: 0px; margin-top: 0px;'>Exploring language families through numbers 1 to 10</h3>",
+      text = "
+<h3 style='font-size: 26px; text-align: justify; margin-top: 0px; color: rgb(0,0,0, 85%);'><b>Welcome!</b></h3>
+<p style='font-size: 22px; text-align: justify;'>This app is the culmination of two previous blog posts, one of which is <a href='https://olafmeneses.github.io/posts/LangNums/LangFacts/LangFacts.html'>On sorting numbers alphabetically in different languages and other absurdities</a>.</p>
+
+<h3 style='font-size: 26px; text-align: justify; color: rgb(0,0,0, 85%);'><b>Explanation</b></h3>
+<p style='font-size: 22px; text-align: justify;'>LangNet offers a <strong>3D visualization of language relationships</strong>. Each point represents a language, with edges connecting it to its two nearest languages.
+<br><br>The distance between languages is calculated as the sum of normalized <a href='https://en.wikipedia.org/wiki/Damerau%E2%80%93Levenshtein_distance'>Damerau-Levenshtein</a> distances between the number names of languages from 1 to 10. Despite using only this limited information, the results are quite good. If you're curious, check out the blog post <a href='https://olafmeneses.github.io/posts/LangNums/LangClust/LangClust.html'>From number names to language families</a>.</p>
+
+<h3 style='font-size: 26px; text-align: justify; color: rgb(0,0,0, 85%);'><b>How to customize the visualization</b></h3>
+<p style='font-size: 22px; text-align: justify;'>At the top right corner, you'll find a configuration button. Clicking it reveals a dropdown menu where you can personalize the visualization.
+
+<h3 style='font-size: 26px; text-align: justify; color: rgb(0,0,0, 85%);'><b>Interactivity</b></h3>
+<p style='font-size: 22px; text-align: justify;'>Hover over any point to access <strong>information about its family tree</strong>, displayed at the top left of the screen. Below, you'll find details about the <strong>number names in the selected language and its nearest language</strong>.</p>
+",
+      size = "l",
+      closeOnEsc = TRUE,
+      closeOnClickOutside = TRUE,
+      html = TRUE,
+      type = "",
+      showConfirmButton = TRUE,
+      showCancelButton = FALSE,
+      confirmButtonText = "Have fun exploring LangNet!",
+      confirmButtonCol = "#1D89FF",
+      timer = 0,
+      imageUrl = "",
+      animation = TRUE
+    )
+  })
+  
+  Sys.sleep(4)
+  click("info_bttn")
+  waiter_hide()
+  
+  
+}

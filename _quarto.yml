@@ -5,21 +5,28 @@ project:
 website:
   title: "Olaf Meneses"
   site-url: https://olafmeneses.github.io
-  description: "Projects, thoughts and "
+  description: "Projects & thoughts"
+  image: /images/profile/2x/profile.png
+  favicon: /images/profile/2x/favicon.png
+  twitter-card:
+    creator: "@wooflaf"
+  open-graph: true
+  cookie-consent: true
+  google-analytics: "G-8HV19LN3J9"
   navbar:
     right:
       - text: Blog
-        href: blog.qmd
+        href: blog/index.qmd
+      - text: Projects
+        href: projects/index.qmd
       - text: About
         href: index.qmd
       - icon: rss
-        href: blog.xml
+        href: blog/index.xml
 
 format:
   html:
-    theme: 
-      light: litera
-      dark: vapor
+    theme: litera
     page-layout: full
     toc: true
 
