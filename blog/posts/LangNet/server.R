@@ -23,17 +23,8 @@ function(input, output, session) {
       g_mod <- g_mod-E(g_mod)
     }
     
-    V(g_mod)$label <- sprintf(V(g_mod)$label, process_labels("group1", input$color_by_group),
-                              process_labels("group2", input$color_by_group),
-                              process_labels("group3", input$color_by_group),
-                              process_labels("group4", input$color_by_group),
-                              process_labels("group5", input$color_by_group),
-                              process_labels("group6", input$color_by_group),
-                              process_labels("group7", input$color_by_group),
-                              vertex_attr(g_mod, input$color_by_group),
-                              replace(vertex_attr(g_mod, paste0(input$color_by_group, "_nbor")),
-                                      is.na(vertex_attr(g_mod, paste0(input$color_by_group, "_nbor"))),
-                                      "<span style='color: rgb(255 255 255 / 52%);'>Undefined</span>"))
+    group_num <- as.integer(substr(input$color_by_group, 6, 7))
+    V(g_mod)$label <- table_labels[[group_num]]
     
     g_selected <- vertex_attr(g_mod, input$color_by_group)
     V(g_mod)$group <- g_selected

@@ -4,7 +4,7 @@ fluidPage(
   useWaiter(),
   waiterPreloader(html = div(
     style = "color:red;",
-    img(src = "/images/LangNet_white.svg", width = "60%"),
+    img(src = "./images/LangNet_white.svg", width = "60%"),
     br(),br(),
     h3(style = "font-size: 30px; color: white;", "Exploring language families through numbers 1 to 10"),
     br(),br(),
