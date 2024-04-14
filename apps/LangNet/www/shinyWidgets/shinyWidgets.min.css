@@ -1,0 +1,18 @@
+.btn.btn-circle { border-radius: 30px; font-size: 20px; height: 49px; line-height: 2; padding: 5px 0px; text-align: center; width: 49px; }
+.btn.btn-circle-xs { border-radius: 30px; font-size: 13px; height: 19px; line-height: 0.1; padding: 1px 0px; text-align: center; width: 19px; }
+.btn.btn-circle-sm { border-radius: 30px; font-size: 20px; height: 35px; line-height: 50%; padding: 2px 0px; text-align: center; width: 35px; }
+.btn.btn-circle-lg { border-radius: 70px; font-size: 30px; height: 79px; line-height: 2; padding: 13px 0px; text-align: center; width: 79px; }
+.btn.btn-square { font-size: 20px; height: 49px; line-height: 2; padding: 5px 0px; text-align: center; width: 49px; }
+.btn.btn-square-xs { font-size: 13px; height: 19px; line-height: 0.1; padding: 1px 0px; text-align: center; width: 19px; }
+.btn.btn-square-sm { font-size: 1pc; height: 35px; line-height: 1.65; padding: 2px 0px; text-align: center; width: 35px; }
+.btn.btn-square-lg { font-size: 30px; height: 79px; line-height: 2; padding: 13px 0px; text-align: center; width: 79px; }
+.btn.btn-color-sw.active::after { color: rgb(255, 255, 255); content: ""; display: inline-block; font-family: "Glyphicons Halflings"; font-size: 11px; left: 0px; line-height: 20px; position: absolute; right: 0px; text-align: center; }
+.btn.btn-color-sw { display: block; height: 20px; margin: 0px; outline: 0px; padding: 0px; position: relative; transition: all 0.1s ease 0s; width: 20px; }
+.btn.btn-color-sw:focus { outline: 0px !important; }
+.material-switch > input[type="checkbox"] { display: none; }
+.material-switch > label.switch { cursor: pointer; height: 0px; position: relative; width: 40px; }
+.material-switch > label.switch::before { background: rgb(0, 0, 0); border-radius: 8px; box-shadow: rgba(0, 0, 0, 0.5) 0px 0px 10px inset; content: ""; height: 1pc; margin-top: -10px; opacity: 0.3; position: absolute; transition: all 0.4s ease-in-out 0s; width: 40px; }
+.material-switch > label.switch::after { background: rgb(255, 255, 255); border-radius: 1pc; box-shadow: rgba(0, 0, 0, 0.3) 0px 0px 5px; content: ""; height: 24px; left: -4px; margin-top: -10px; position: absolute; top: -4px; transition: all 0.3s ease-in-out 0s; width: 24px; }
+.material-switch > input[type="checkbox"]:checked + label.switch::before { background: inherit; opacity: 0.5; }
+.material-switch > input[type="checkbox"]:checked + label.switch::after { background: inherit; left: 20px; }
+.material-switch label { cursor: pointer; font-weight: 400; }

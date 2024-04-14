@@ -1,0 +1,6 @@
+.sw-dropdown { position: relative; }
+.sw-dropdown-in { position: relative; padding: 8px 10px; margin: 8px 10px; background-color: rgb(255, 255, 255); z-index: 100; }
+.sw-dropdown-content { display: none; position: absolute; border-radius: 10px; background: none 0% 0% repeat scroll rgb(255, 255, 255); box-shadow: rgb(192, 192, 192) 0px 0px 15px 0px; z-index: 5; }
+.sw-dropup-content { bottom: 100%; }
+.sw-dropright-content { right: 0px; }
+.sw-show.sw-dropdown-content { display: block; }
