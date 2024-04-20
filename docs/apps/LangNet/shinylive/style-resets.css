@@ -38,7 +38,7 @@ picture,
 video,
 canvas,
 svg {
-  display: block;
+  display: inline; /* changed display:block to inline */
   max-width: 100%;
 }
 /*

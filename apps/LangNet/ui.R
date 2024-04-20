@@ -4,12 +4,11 @@ fluidPage(
   useShinyalert(force = T),
   useWaiter(),
   waiterPreloader(html = div(
-    style = "color:red;",
-    img(src = "./images/LangNet_white.svg", width = "60%"),
-    br(),br(),
-    h3(style = "font-size: 30px; color: white;", "Exploring language families through numbers 1 to 10"),
-    br(),br(),
-    spin_wave()
+    # img(src = "./images/LangNet_white.svg", width = "60%"),
+    # br(),br(),
+    # h3(style = "font-size: 30px; color: white;", "Exploring language families through numbers 1 to 10"),
+    # br(),br(),
+    # spin_wave()
   ),
   color = "black", fadeout = T),
   # CSS style to position the overlay inputs and style the plot area and other custom scripts

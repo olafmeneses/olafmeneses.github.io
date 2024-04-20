@@ -8,6 +8,10 @@
       src="./shinylive/load-shinylive-sw.js"
       type="module"
     ></script>
+    <script
+      src="./shinylive/webr/waiter-0.2.5/waiter.js"
+      type="module"
+    ></script>
     <script type="module">
       import { runApp } from "./shinylive/shinylive.js";
       const response = await fetch("./app.json");
@@ -23,6 +27,6 @@
     <link rel="stylesheet" href="./shinylive/shinylive.css" />
   </head>
   <body>
-    <div style="height: 100vh; width: 100vw" id="root"></div>
+    <div style="height: 100vh; width: 100vw;" id="root"></div>
   </body>
 </html>

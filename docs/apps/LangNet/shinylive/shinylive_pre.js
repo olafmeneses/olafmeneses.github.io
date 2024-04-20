@@ -34970,43 +34970,33 @@ function Terminal({
 // src/Components/Viewer.tsx
 var React8 = __toESM(require_react());
 
-/*
-<img src="./shinylive/images/LangNet_white.svg" width="60%"/>  <br/>  <br/>  <h3 style="font-size: 30px; color: white;">Exploring language families through numbers 1 to 10</h3>  <br/>  <br/>  <div class="waver">    <div class="rect1"></div>    <div class="rect2"></div>    <div class="rect3"></div>    <div class="rect4"></div>    <div class="rect5"></div>  </div>
-
-
-*/
-
 // src/Components/LoadingAnimation.tsx
 var import_jsx_runtime6 = __toESM(require_jsx_runtime());
 function LoadingAnimation() {
   return /* @__PURE__ */ (0, import_jsx_runtime6.jsxs)("div", { className: "loading-animation", children: [
-    /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("img", { src: "./shinylive/webr/images/LangNet_white.svg", display: "inline", width: "60%", style:{marginBottom: "3%"} }),
-    /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("h3", {style: {color: "white", fontSize: "30px", fontWeight: 400, fontFamily: "'Montserrat', sans-serif", marginBottom: "3%"}, children: "Exploring language families through numbers 1 to 10"}),
-    /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("div", { style: {marginBottom: "3%"}, className: "waver", children: [
-        /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("div", { className: "rect1" }),  
-        /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("div", { className: "rect2" }), 
-        /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("div", { className: "rect3" }), 
-        /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("div", { className: "rect4" }), 
-        /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("div", {className: "rect5" })
-    ] }), 
-        /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("h3", {
-  style: {
-    color: "white",
-    fontSize: "20px",
-    fontWeight: 300,
-    fontFamily: "'Montserrat', sans-serif"
-  },
-  children: ["Downloading packages", /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("span", {
-    className: "dots",
-    children: [/* @__PURE__ */ (0, import_jsx_runtime6.jsx)("span", {
-      children: "."
-    }), /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("span", {
-      children: "."
-    }), /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("span", {
-      children: "."
-    })]
-  })]
-})
+    /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("div", { className: "hex" }),
+    /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("div", { className: "hex" }),
+    /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("div", { className: "hex" }),
+    /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("br", {}),
+    /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("div", { className: "hex" }),
+    /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("div", { className: "hex" }),
+    /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("div", { className: "hex" }),
+    /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("div", { className: "hex" }),
+    /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("br", {}),
+    /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("div", { className: "hex" }),
+    /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("div", { className: "hex" }),
+    /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("div", { className: "spacer" }),
+    /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("div", { className: "hex" }),
+    /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("div", { className: "hex" }),
+    /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("br", {}),
+    /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("div", { className: "hex" }),
+    /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("div", { className: "hex" }),
+    /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("div", { className: "hex" }),
+    /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("div", { className: "hex" }),
+    /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("br", {}),
+    /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("div", { className: "hex" }),
+    /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("div", { className: "hex" }),
+    /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("div", { className: "hex" })
   ] });
 }
 

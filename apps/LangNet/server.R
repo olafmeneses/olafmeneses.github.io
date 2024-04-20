@@ -35,13 +35,14 @@ function(input, output, session) {
   click("info_bttn")
   
   embedding_ls <- reactiveValues(historic = NULL)
-
+  filter_group <- reactive(input$filter_group)
+  filter_group_d <- filter_group %>% debounce(500)
   observeEvent(
     {
       input$edges
       input$embedding
       input$color_by_group
-      input$filter_group
+      filter_group_d()
     },
     {
       embedding_ls$historic <- c(embedding_ls$historic, input$embedding)
@@ -61,7 +62,7 @@ function(input, output, session) {
 
     g_selected <- vertex_attr(g_mod, input$color_by_group)
     V(g_mod)$group <- g_selected
-    V(g_mod)$group <- ifelse(V(g_mod)$group1 %in% input$filter_group, V(g_mod)$group, NA)
+    V(g_mod)$group <- ifelse(V(g_mod)$group1 %in% filter_group_d(), V(g_mod)$group, NA)
     if(group_num == 1){
       V(g_mod)$color <- color_mapping_g1[V(g_mod)$group]
     }
