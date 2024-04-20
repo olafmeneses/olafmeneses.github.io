@@ -101,6 +101,14 @@ td, th {
   padding-top: 1% !important;
 }
 
+@media screen and (max-width: 767px) {
+            .sweet-alert {
+              padding: 5% !important;
+              padding-top: 1% !important;
+              margin-top: -105% !important;
+            }
+        }
+
 .sweet-alert h2 {
   margin-bottom: 10px !important;
 }
@@ -112,6 +120,17 @@ td, th {
   margin-top: 6%;
 }
 
+@media screen and (max-width: 767px) {
+            #div_num_table {
+                display: none;
+            }
+        }
+@media screen and (max-height: 850px) {
+            #div_num_table {
+                display: none;
+            }
+        }
+        
 .dropdown-menu>.active>a, .dropdown-menu>.active>a:focus, .dropdown-menu>.active>a:hover{
   background-color: #1d89ff;
 }

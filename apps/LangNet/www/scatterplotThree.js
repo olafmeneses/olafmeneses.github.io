@@ -144,6 +144,7 @@ Widget.scatter = function(w, h, x, y, z)
       _this.camera.position.y = localStorage.getItem("y");
       _this.camera.position.z = localStorage.getItem("z");
     }
+    
     _this.controls = new THREE.TrackballControls(_this.camera, el);
     if(localStorage.getItem("up_x") != null){
       _this.controls.object.up.x = JSON.parse(localStorage.getItem("up_x"));
@@ -159,11 +160,16 @@ Widget.scatter = function(w, h, x, y, z)
       _this.controls.target.y = JSON.parse(localStorage.getItem("target_y"));
       _this.controls.target.z = JSON.parse(localStorage.getItem("target_z"));
     }
-    _this.controls.rotateSpeed = 4.6;
-    _this.controls.zoomSpeed = 1.5;
-    _this.controls.panSpeed = 0.8;
-    _this.controls.dynamicDampingFactor = 0.2;
+    _this.controls.rotateSpeed = 2.3; //4.6
+    _this.controls.zoomSpeed = 0.75; //1.5
+    _this.controls.panSpeed = 0.4; //0.8
+    _this.controls.dynamicDampingFactor = 0.2; //0.2
+    _this.controls.enableZoom = true;
+    _this.controls.noZoom = false;
+    _this.controls.noPan = false;
+    _this.controls.staticMoving = false;
     _this.controls.addEventListener('change', render);
+    _this.controls.addEventListener("change", (event) => {console.log(event)});
     _this.controls.addEventListener("change", event => {
       localStorage.setItem("up_x", JSON.stringify(_this.controls.object.up.x));
       localStorage.setItem("up_y", JSON.stringify(_this.controls.object.up.y));
@@ -178,7 +184,6 @@ Widget.scatter = function(w, h, x, y, z)
       localStorage.setItem("target_y", _this.controls.target.y);
       localStorage.setItem("target_z", _this.controls.target.z);
     })
-
     scene = new THREE.Scene();
     while (el.hasChildNodes()) {
       el.removeChild(el.lastChild);
@@ -1248,10 +1253,10 @@ Widget.scatter = function(w, h, x, y, z)
 
   function render()
   {
-    if(_this.controls.state && _this.controls.state < 0 && _this.frame < 0)
-    {
-      _this.idle = true; // Conserve CPU by terminating render loop when not needed
-    }
+    //if(_this.controls.state && _this.controls.state < 0 && _this.frame < 0)
+    //{
+    //  _this.idle = true; // Conserve CPU by terminating render loop when not needed
+    //}
     // render scenes
     _this.renderer.clear();
     _this.renderer.render(scene, _this.camera);

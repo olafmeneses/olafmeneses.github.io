@@ -13,7 +13,7 @@ plot_graph <- function(g, dim, layout = NA, ...){
       visInteraction(dragNodes = F)
   }
   else if (dim == 3){
-    graphjs(g, vertex.size = 0.2, bg = "black", layout = layout,...)
+    graphjs(g, vertex.size = 0.2, bg = "black", layout = layout, ...)
   }
 }
 

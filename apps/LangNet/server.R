@@ -81,11 +81,11 @@ function(input, output, session) {
     }
     else{
       if(embedding_ls$prev_embedding == "tsne" & embedding_ls$current_embedding == "mds"){
-        p <- plot_graph(color_graph(), dim=3, layout=list(tsne, mds), fpl=400,
+        p <- plot_graph(color_graph(), dim=3, layout=list(tsne, mds), fpl=1400,
                         main = HTML("<h2 style='text-align:left; margin-left: 20px; font-size: 28px; color: rgb(255 255 255 / 62%);'>Hover for language & family info</h2>"))
       }
       else if(embedding_ls$prev_embedding == "mds" & embedding_ls$current_embedding == "tsne"){
-        p <- plot_graph(color_graph(), dim=3, layout=list(mds, tsne), fpl=400,
+        p <- plot_graph(color_graph(), dim=3, layout=list(mds, tsne), fpl=1400,
                         main = HTML("<h2 style='text-align:left; margin-left: 20px; font-size: 28px; color: rgb(255 255 255 / 62%);'>Hover for language & family info</h2>"))
       }
     }
