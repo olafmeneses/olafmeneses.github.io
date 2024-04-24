@@ -32,8 +32,6 @@ function(input, output, session) {
     )
   })
   
-  click("info_bttn")
-  
   embedding_ls <- reactiveValues(historic = NULL)
   filter_group <- reactive(input$filter_group)
   filter_group_d <- filter_group %>% debounce(500)

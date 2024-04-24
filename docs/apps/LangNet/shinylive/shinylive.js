@@ -34978,7 +34978,8 @@ var React8 = __toESM(require_react());
 
 // src/Components/LoadingAnimation.tsx
 var import_jsx_runtime6 = __toESM(require_jsx_runtime());
-function LoadingAnimation() {
+
+function aa() {
   return /* @__PURE__ */ (0, import_jsx_runtime6.jsxs)("div", { className: "loading-animation", children: [
     /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("img", { src: "./shinylive/webr/images/LangNet_white.svg", display: "inline", width: "60%", style:{marginBottom: "3%"} }),
     /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("h3", {style: {color: "white", fontSize: "30px", fontWeight: 400, fontFamily: "'Montserrat', sans-serif", marginBottom: "3%"}, children: "Exploring language families through numbers 1 to 10"}),
@@ -35009,6 +35010,255 @@ function LoadingAnimation() {
 })
   ] });
 }
+
+
+function LoadingAnimation() {
+  return /* @__PURE__ */ (0, import_jsx_runtime6.jsxs)("div", {children: [
+    /* @__PURE__ */ (0, import_jsx_runtime6.jsxs)("div", { className: "loading-animation", children: [
+    /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("img", { src: "./shinylive/webr/images/LangNet_white.svg", display: "inline", width: "60%", style:{marginBottom: "3%"} }),
+    /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("h3", {style: {color: "white", fontSize: "30px", fontWeight: 400, fontFamily: "'Montserrat', sans-serif", marginBottom: "3%"}, children: "Exploring language families through numbers 1 to 10"}),
+    /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("div", { style: {marginBottom: "3%"}, className: "waver", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("div", { className: "rect1" }),  
+        /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("div", { className: "rect2" }), 
+        /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("div", { className: "rect3" }), 
+        /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("div", { className: "rect4" }), 
+        /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("div", {className: "rect5" })
+    ] }), 
+        /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("h3", {
+  style: {
+    color: "white",
+    fontSize: "20px",
+    fontWeight: 300,
+    fontFamily: "'Montserrat', sans-serif"
+  },
+  children: ["Downloading packages", /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("span", {
+    className: "dots",
+    children: [/* @__PURE__ */ (0, import_jsx_runtime6.jsx)("span", {
+      children: "."
+    }), /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("span", {
+      children: "."
+    }), /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("span", {
+      children: "."
+    })]
+  })]
+})
+  ] }),
+    /* @__PURE__ */ (0, import_jsx_runtime6.jsxs)("div", {
+    className: "sweet-alert  alert-size-l showSweetAlert visible",
+    style: {
+      display: "block",
+      marginTop: "-438px"
+    },
+    "data-custom-class": " alert-size-l",
+    "data-has-cancel-button": "false",
+    "data-has-confirm-button": "true",
+    "data-allow-outside-click": "true",
+    "data-has-done-function": "true",
+    "data-animation": "pop",
+    "data-timer": "null",
+    children: [
+      /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("span", { className: "other-messages" }),
+      /* @__PURE__ */ (0, import_jsx_runtime6.jsxs)("div", {
+  className: "sa-icon sa-error",
+  style: { display: "none" },
+  children: [
+    /* @__PURE__ */ (0, import_jsx_runtime6.jsxs)("span", {
+      className: "sa-x-mark",
+      children: [
+        /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("span", { className: "sa-line sa-left" }),
+        /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("span", { className: "sa-line sa-right" })
+      ]
+    }),
+    /* @__PURE__ */ (0, import_jsx_runtime6.jsxs)("div", {
+      className: "sa-icon sa-warning",
+      style: { display: "none" },
+      children: [
+        /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("span", { className: "sa-body" }),
+        /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("span", { className: "sa-dot" })
+      ]
+    }),
+    /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("div", {
+      className: "sa-icon sa-info",
+      style: { display: "none" }
+    }),
+    /* @__PURE__ */ (0, import_jsx_runtime6.jsxs)("div", {
+      className: "sa-icon sa-success",
+      style: { display: "none" },
+      children: [
+        /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("span", { className: "sa-line sa-tip" }),
+        /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("span", { className: "sa-line sa-long" }),
+        /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("div", { className: "sa-placeholder" }),
+        /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("div", { className: "sa-fix" })
+      ]
+    }),
+    /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("div", {
+      className: "sa-icon sa-custom",
+      style: { display: "none" }
+    })
+  ]
+}),
+      /* @__PURE__ */ (0, import_jsx_runtime6.jsxs)("h2", {
+        children: [
+          /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("h2", {
+            style: {
+              fontSize: "36px",
+              color: "rgb(0,0,0, 95%)",
+              margin: 0,
+              marginBottom: "10px"
+            },
+            children: "LangNet"
+          }),
+          /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("h3", {
+            style: {
+              fontSize: "30px",
+              marginBottom: 0,
+              marginTop: 0
+            },
+            children: "Exploring language families through numbers 1 to 10"
+          })
+        ]
+      }),
+      /* @__PURE__ */ (0, import_jsx_runtime6.jsxs)("p", {
+        style: { display: "block" },
+        children: [
+          /* @__PURE__ */ (0, import_jsx_runtime6.jsxs)("h3", {
+            style: {
+              fontSize: "26px",
+              textAlign: "justify",
+              marginTop: 0,
+              color: "rgb(0,0,0, 85%)"
+            },
+            children: [
+              /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("b", { children: "Welcome!" })
+            ]
+          }),
+          /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("p", {
+            style: {
+              fontSize: "22px",
+              textAlign: "justify"
+            },
+            children: ["This app is the culmination of two previous blog posts, one of which is ",
+            /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("a", {
+              href: "https://olafmeneses.github.io/blog/posts/LangNet/LangFacts/LangFacts.html",
+              children: "On sorting numbers alphabetically in different languages and other absurdities"
+            }),
+            "."]
+          })
+        ]
+      }),
+      /* @__PURE__ */ (0, import_jsx_runtime6.jsxs)("h3", {
+        style: {
+          fontSize: "26px",
+          textAlign: "justify",
+          color: "rgb(0,0,0, 85%)"
+        },
+        children: [
+          /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("b", { children: "Explanation" })
+        ]
+      }),
+      /* @__PURE__ */ (0, import_jsx_runtime6.jsxs)("p", {
+        style: {
+          fontSize: "22px",
+          textAlign: "justify"
+        },
+        children: [
+          "LangNet offers a ",
+          /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("strong", { children: "3D visualization of language relationships" }),
+          ". Each point represents a language, with edges connecting it to its two nearest languages.",
+          /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("br", {}),
+          /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("br", {}),
+          "The distance between languages is calculated as the sum of normalized ",
+          /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("a", {
+            href: "https://en.wikipedia.org/wiki/Damerau%E2%80%93Levenshtein_distance",
+            children: "Damerau-Levenshtein"
+          }),
+          " distances between the number names of languages from 1 to 10. Despite using only this limited information, the results are quite good. If you're curious, check out the blog post ",
+          /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("a", {
+            href: "https://olafmeneses.github.io/blog/posts/LangNet/LangClust/LangClust.html",
+            children: "From number names to language families"
+          }),
+          "."
+        ]
+      }),
+      /* @__PURE__ */ (0, import_jsx_runtime6.jsxs)("h3", {
+        style: {
+          fontSize: "26px",
+          textAlign: "justify",
+          color: "rgb(0,0,0, 85%)"
+        },
+        children: [
+          /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("b", { children: "How to customize the visualization" })
+        ]
+      }),
+      /* @__PURE__ */ (0, import_jsx_runtime6.jsxs)("p", {
+        style: {
+          fontSize: "22px",
+          textAlign: "justify"
+        },
+        children: [
+          "At the top right corner, you'll find a configuration button. Clicking it reveals a dropdown menu where you can personalize the visualization."
+        ]
+      }),
+      /* @__PURE__ */ (0, import_jsx_runtime6.jsxs)("h3", {
+        style: {
+          fontSize: "26px",
+          textAlign: "justify",
+          color: "rgb(0,0,0, 85%)"
+        },
+        children: [
+          /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("b", { children: "Interactivity" })
+        ]
+      }),
+      /* @__PURE__ */ (0, import_jsx_runtime6.jsxs)("p", {
+        style: {
+          fontSize: "22px",
+          textAlign: "justify"
+        },
+        children: [
+          "Hover over any point to access ",
+          /* @__PURE__ */ (
+
+0, import_jsx_runtime6.jsx)("strong", { children: "information about its family tree" }),
+          ", displayed at the top left of the screen. Below, you'll find details about the ",
+          /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("strong", { children: "number names in the selected language and its nearest language" }),
+          "."
+        ]
+      }),
+      /* @__PURE__ */ (0, import_jsx_runtime6.jsxs)("div", {
+        className: "sa-error-container",
+        children: [
+          /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("div", { className: "icon", children: "!" }),
+          /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("p", { children: "Not valid!" })
+        ]
+      }),
+      /* @__PURE__ */ (0, import_jsx_runtime6.jsxs)("div", {
+        className: "sa-button-container",
+        children: [
+          /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("button", {
+            className: "cancel",
+            tabindex: "2",
+            style: { display: "none", boxShadow: "none" },
+            children: "Cancel"
+          }),
+          /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("button", {
+            className: "confirm",
+            tabindex: "1",
+            onClick: function(){var element = document.getElementsByClassName('sweet-alert')[0]; element.style.display = 'none';},
+            style: {
+              display: "inline-block",
+              backgroundColor: "rgb(29, 137, 255)",
+              boxShadow: "rgba(29, 137, 255, 0.8) 0px 0px 2px, rgba(0, 0, 0, 0.05) 0px 0px 0px 1px inset"
+            },
+            children: "Have fun exploring LangNet!"
+          })
+        ]
+      })
+    ]
+  })
+  ]})}
+    
+    
+
 
 // src/Components/skull.svg
 var skull_default = 'data:image/svg+xml,<?xml version="1.0" encoding="utf-8"?>%0A<!-- Generator: Adobe Illustrator 26.3.1, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->%0A<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"%0A%09 viewBox="0 0 838.3 838.7" style="enable-background:new 0 0 838.3 838.7;" xml:space="preserve">%0A<style type="text/css">%0A%09.head {%0A%09%09fill: %23ccc;%0A%09}%0A%09.open, .blink {%0A%09%09fill: %23fff;%0A%09}%0A%09.open{%0A%09%09animation: hideshow 12s ease infinite;%0A%09}%0A%09@keyframes hideshow {%0A%09%090% { opacity: 1; }%0A%09%0949% { opacity: 1; }%0A%09%0950% { opacity: 0; }%0A%09%0951% { opacity: 1; }%0A%09%0989% { opacity: 1; }%0A%09%0990% { opacity: 0; }%0A%09%0991% { opacity: 1; }%0A%09%0992% { opacity: 0; }%0A%09%0993% { opacity: 1; }%0A%09}%0A</style>%0A<!-- Head -->%0A<path class="head" d="M830.7,321c-7.6-53.1-27.2-101.4-57.9-145.2c-24.4-34.7-53.5-64.6-87.9-89.3c-23.3-16.7-48-30.9-73.9-43%0A%09c-42.8-19.9-87.7-32.3-134.5-38c-31.3-3.8-62.7-4.8-94.2-2.1c-25.5,2.2-50.7,5.9-75.5,12.1c-33,8.2-64.9,19.9-95.2,35.6%0A%09c-31,16-60.4,34.6-86.6,57.9c-36.3,32.1-65.6,69.7-87.1,113.3C19.2,259.9,8.7,299.9,5.2,341.8c-2.4,28.6-0.3,56.9,5,85%0A%09c8.8,46.5,25.9,89.4,53,128.4c25.4,36.7,56.3,67.8,92.3,93.9c3,2.2,4.2,4.4,4.2,8.1c-0.2,32.8-0.4,65.6,0,98.5%0A%09c0.2,19,5.5,36.7,17.4,51.8c16.1,20.2,38,28.5,62.9,29.2c23.2,0.6,46.5,0.1,69.7,0.1c1.6,0,3.2,0,5.2,0c0-2.6,0-4.6,0-6.6%0A%09c0-22,0-44.1,0-66.1c0-3.5,0.3-7,0.8-10.4c3-18.4,25.1-27.4,40.3-16.7c8.3,5.8,11,14.2,11.1,23.7c0.2,23.5,0.1,47.1,0.1,70.6%0A%09c0,1.7,0,3.5,0,5.3c34.8,0,68.9,0,103.6,0c0-2.4,0-4.2,0-6c0-23.5-0.2-47.1,0.1-70.6c0.1-10.5,3.7-19.6,13.8-24.5%0A%09c10.5-5,20.6-3.9,29.6,3.5c7.3,6,8.7,14.6,8.8,23.3c0.2,22.7,0.1,45.4,0.1,68.1c0,1.9,0,3.9,0,5.5c0.9,0.4,1.2,0.7,1.5,0.7%0A%09c28.3-0.3,56.7,0.5,85-1.3c20-1.2,37.2-10.7,50.3-26.5c12.6-15.3,18.1-33.3,18.5-52.9c0.4-17.4,0.1-34.8,0.1-52.2%0A%09c0-15.7,0.2-31.5-0.1-47.2c-0.1-4,1.1-6.2,4.1-8.6c15.1-12.1,30.5-23.8,44.6-36.9c32.1-29.7,57.6-64.7,76.2-104.4%0A%09C831,447.6,839.9,385.6,830.7,321z"/>%0A%09<!-- Open Eyes -->%0A<path class="open" d="M574.8,513c-58.3,0-103.9-46.6-103.7-104.5c0.2-58.7,46.5-104.1,103.8-103.9c57.7,0.1,102.3,46.1,103.8,104.3%0A%09C677.2,466.7,632.9,513,574.8,513z"/>%0A<path class="open" d="M263.4,513.3c-57.6-1.3-103.6-45.8-103.9-104.2c-0.2-58.2,45.7-104.6,103.7-104.6%0A%09c57.5,0,103.5,45.7,103.6,104.1C366.9,466.4,321.7,511.7,263.4,513.3z"/>%0A%09<!-- Blinks -->%0A<path class="blink" d="M263.4,438.4c-55-0.1-99-4-99.2-9c-0.2-5,43.6-9.1,99-9.1c54.9,0,98.9,4,99,9%0A%09C362.2,434.3,319.1,438.2,263.4,438.4z"/>%0A<path class="blink" d="M574.8,438.3c-55.6,0-99.1-4-98.9-9.1c0.2-5.1,44.3-9,99-9c55,0,97.6,4,99,9%0A%09C672.5,434.3,630.2,438.3,574.8,438.3z"/>%0A</svg>%0A';

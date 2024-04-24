@@ -4,6 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Shiny App</title>
+    <link rel="stylesheet" href="./shinylive/webr/style.css"/>
     <script
       src="./shinylive/load-shinylive-sw.js"
       type="module"
@@ -12,6 +13,14 @@
       src="./shinylive/webr/waiter-0.2.5/waiter.js"
       type="module"
     ></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Noto+Sans+Display:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <script src="./shinylive/webr/shinyalert-assets/shared/sweetalert-1.0.1/js/sweetalert.min.js"></script>
+    <link rel="stylesheet" href="./shinylive/webr/shinyalert-assets/shared/sweetalert-1.0.1/css/sweetalert.min.css"/>
+    <script src="./shinylive/webr/shinyalert-assets/shared/swalservice/swalservice.min.js"></script>
+    <script src="./shinylive/webr/shinyalert-assets/srcjs/shinyalert.js"></script>
+    <link rel="stylesheet" href="./shinylive/webr/shinyalert-assets/css/shinyalert.css"/>
     <script type="module">
       import { runApp } from "./shinylive/shinylive.js";
       const response = await fetch("./app.json");

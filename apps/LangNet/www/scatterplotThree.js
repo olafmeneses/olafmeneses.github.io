@@ -169,7 +169,6 @@ Widget.scatter = function(w, h, x, y, z)
     _this.controls.noPan = false;
     _this.controls.staticMoving = false;
     _this.controls.addEventListener('change', render);
-    _this.controls.addEventListener("change", (event) => {console.log(event)});
     _this.controls.addEventListener("change", event => {
       localStorage.setItem("up_x", JSON.stringify(_this.controls.object.up.x));
       localStorage.setItem("up_y", JSON.stringify(_this.controls.object.up.y));
