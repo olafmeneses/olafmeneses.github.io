@@ -1,8 +1,0 @@
----
-title: VLC TrànsitAire
-description: |
-    
-image: /images/transitaire.png
----
-
-On construction...

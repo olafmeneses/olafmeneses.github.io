@@ -1,8 +1,0 @@
----
-title: Del Fuego Al Dato
-description: |
-    
-image: /images/Junta_CyL.png
----
-
-On construction...
