@@ -47,6 +47,16 @@ function(input, output, session) {
       prev_idx <- ifelse(length(embedding_ls$historic) == 1, 1, length(embedding_ls$historic) - 1)
       embedding_ls$current_embedding <- embedding_ls$historic[length(embedding_ls$historic)]
       embedding_ls$prev_embedding <- embedding_ls$historic[prev_idx]
+      runjs('
+      if(localStorage.getItem("rotateSpeed") == null){
+        var speed = 2.3;
+      }else{
+        var speed = localStorage.getItem("rotateSpeed");
+        var speed = 0.8+(0.25-0.8)/(1+(speed/0.6)**2.75);
+      }
+      localStorage.setItem("rotateSpeed", speed);
+      //console.log("shiny", localStorage.getItem("rotateSpeed"));'
+            )
     }
   )
 
@@ -70,7 +80,10 @@ function(input, output, session) {
 
     return(g_mod)
   })
-
+  
+  observe({
+    print(paste(embedding_ls$current_embedding, embedding_ls$prev_embedding))
+  })
   output$distPlot <- renderScatterplotThree({
 
     if(req(embedding_ls$current_embedding) == req(embedding_ls$prev_embedding)){
@@ -85,6 +98,7 @@ function(input, output, session) {
       else if(embedding_ls$prev_embedding == "mds" & embedding_ls$current_embedding == "tsne"){
         p <- plot_graph(color_graph(), dim=3, layout=list(mds, tsne), fpl=1400,
                         main = HTML("<h2 style='text-align:left; margin-left: 20px; font-size: 28px; color: rgb(255 255 255 / 62%);'>Hover for language & family info</h2>"))
+        
       }
     }
     p$elementId <- NULL

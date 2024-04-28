@@ -160,7 +160,14 @@ Widget.scatter = function(w, h, x, y, z)
       _this.controls.target.y = JSON.parse(localStorage.getItem("target_y"));
       _this.controls.target.z = JSON.parse(localStorage.getItem("target_z"));
     }
-    _this.controls.rotateSpeed = 2.3; //4.6
+    if(localStorage.getItem("rotateSpeed") != null){
+      _this.controls.rotateSpeed = localStorage.getItem("rotateSpeed");
+    }
+    else{
+      _this.controls.rotateSpeed = 2.3; //4.6
+    }
+    localStorage.setItem("rotateSpeed", _this.controls.rotateSpeed);
+    //console.log(_this.controls.rotateSpeed)
     _this.controls.zoomSpeed = 0.75; //1.5
     _this.controls.panSpeed = 0.4; //0.8
     _this.controls.dynamicDampingFactor = 0.2; //0.2
@@ -192,7 +199,7 @@ Widget.scatter = function(w, h, x, y, z)
     info.style.top = "-" + el.getBoundingClientRect().height + "px";
     info.style.left = "0px";
     el.appendChild(info);
-
+    
 // subscribe to custom shown event (fired by ioslides to trigger
 // shiny reactivity but we can use it as well). this is necessary
 // because if a widget starts out as display:none it has height
@@ -1241,6 +1248,8 @@ Widget.scatter = function(w, h, x, y, z)
       if(_this.options.left) _this.infobox.style.left = _this.options.left + "px";
     }
   }
+  
+  var animation;
 
   _this.animate = function ()
   {
@@ -1248,8 +1257,7 @@ Widget.scatter = function(w, h, x, y, z)
     render();
     if(_this.renderer.GL) _this.update();
     if(! _this.idle)  requestAnimationFrame(_this.animate); // (hogs CPU)
-  };
-
+  }
   function render()
   {
     //if(_this.controls.state && _this.controls.state < 0 && _this.frame < 0)
