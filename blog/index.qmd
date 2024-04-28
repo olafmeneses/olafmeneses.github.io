@@ -2,8 +2,8 @@
 title: "Blog"
 listing:
   contents: 
-    - /posts/**/*.qmd
-    - /posts/**/**/*.qmd
+    - ../posts/**/*.qmd
+    - ../posts/**/**/*.qmd
   type: grid
   fields: [date, title, description, categories, reading-time, image]
   sort:
@@ -15,4 +15,3 @@ listing:
 page-layout: full
 title-block-banner: false
 ---
-

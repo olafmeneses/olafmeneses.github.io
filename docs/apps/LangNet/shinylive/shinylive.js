@@ -35139,7 +35139,7 @@ function LoadingAnimation() {
             },
             children: ["This app is the culmination of two previous blog posts, one of which is ",
             /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("a", {
-              href: "https://olafmeneses.github.io/blog/posts/LangNet/LangFacts/LangFacts.html",
+              href: "https://olafmeneses.github.io/posts/LangNet/LangFacts",
               children: "On sorting numbers alphabetically in different languages and other absurdities"
             }),
             "."]
@@ -35174,7 +35174,7 @@ function LoadingAnimation() {
           }),
           " distances between the number names of languages from 1 to 10. Despite using only this limited information, the results are quite good. If you're curious, check out the blog post ",
           /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("a", {
-            href: "https://olafmeneses.github.io/blog/posts/LangNet/LangClust/LangClust.html",
+            href: "https://olafmeneses.github.io/posts/LangNet/LangClust",
             children: "From number names to language families"
           }),
           "."

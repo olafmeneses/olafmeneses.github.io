@@ -26,7 +26,7 @@ source("./functions_serverless/graph_plotters.R", encoding = "UTF-8")
 # because it depends on BH package which is ~200MB, which slows down start up
 source("./functions_serverless/shinyWidgets_manual.R", encoding = "UTF-8") 
 
-download.file("https://raw.githubusercontent.com/olafmeneses/olafmeneses.github.io/main/blog/posts/LangNet/data/data.RData", "/tmp/data.RData")
+download.file("https://raw.githubusercontent.com/olafmeneses/olafmeneses.github.io/main/posts/LangNet/data/data.RData", "/tmp/data.RData")
 load("/tmp/data.RData")
 
 # load("./data/data.RData")

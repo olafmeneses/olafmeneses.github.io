@@ -12,6 +12,8 @@ format:
     fig-format: svg
     code-fold: true
     css: style.css
+share:  
+  permalink: "https://olafmeneses.github.io/posts/LangNet/LangClust"
 ---
 
 ```{r setup, include=FALSE}
@@ -38,11 +40,11 @@ package.check <- lapply(packages, FUN = function(x) {
 })
 ```
 
-This post is a continuation of a previous post: [On sorting numbers alphabetically in different languages and other absurdities](../LangFacts/LangFacts.qmd), where we made a little exploration of number names from 1 to 10 across +5000 languages and learnt some curiosities along the way. Nonetheless, you don't need to read it to understand this one. They're somewhat independent.
+This post is a continuation of a previous post: [On sorting numbers alphabetically in different languages and other absurdities](../LangFacts), where we made a little exploration of number names from 1 to 10 across +5000 languages and learnt some curiosities along the way. Nonetheless, you don't need to read it to understand this one. They're somewhat independent.
 
 Given the title and description of the post, you can imagine what we will see today. The idea is to try some classification, clustering and dimensionality reduction techniques to see what these 10 words can tell us about different language families.
 
-As I mentioned in the previous post, I've also created a Shiny app where you can visualize +3800 languages in an interactive 3D plot. I think it's pretty cool. I highly recommend checking it out: [https://olafmeneses.shinyapps.io/LangNet](https://olafmeneses.shinyapps.io/LangNet)
+As I mentioned in the previous post, I've also created a Shiny app where you can visualize +3800 languages in an interactive 3D plot. I think it's pretty cool. I highly recommend checking it out: [https://olafmeneses.github.io/apps/LangNet](https://olafmeneses.github.io/apps/LangNet)
 
 Before we start getting into the matter, let's take a look at the data. For each language, we have the following information:
 
@@ -422,7 +424,7 @@ plot_dendrogram(hc, pal, sort_color_by=F)
 
 # A look back
 
-As we conclude this journey, it's amazing to think back to how it all started — a simple note written down while I was on the metro, as mentioned in [On sorting numbers alphabetically in different languages and other absurdities](../LangFacts/LangFacts.qmd)). Now, after more than a month of work, it culminates in two detailed posts and a Shiny app. I'm more than happy with the results I got. Are they gonna change the world? Probably not. Did I enjoy the process of reading about number systems in different languages? Absolutely! And I hope that you enjoyed it too.
+As we conclude this journey, it's amazing to think back to how it all started — a simple note written down while I was on the metro, as mentioned in [On sorting numbers alphabetically in different languages and other absurdities](../LangFacts)). Now, after more than a month of work, it culminates in two detailed posts and a Shiny app. I'm more than happy with the results I got. Are they gonna change the world? Probably not. Did I enjoy the process of reading about number systems in different languages? Absolutely! And I hope that you enjoyed it too.
 
 Special thanks to Mark Rosenfelder. Without his extensive work in compiling number names from over 5000 languages, this would have been way less interesting. 
 
@@ -430,6 +432,6 @@ Let me repeat a sentence from this post (but now using the quotation style, as i
 
 >Stupid ideas sometimes (and only sometimes) lead you to interesting places.
 
-Don't forget to check out the Shiny app! [https://olafmeneses.shinyapps.io/LangNet](https://olafmeneses.shinyapps.io/LangNet).
+Don't forget to check out the Shiny app! [https://olafmeneses.github.io/apps/LangNet](https://olafmeneses.github.io/apps/LangNet).
 
 Feel free to comment below or email me at menesesolaf@gmail.com with any questions or suggestions. See you in the next post!

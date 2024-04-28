@@ -17,8 +17,6 @@ website:
     right:
       - text: Blog
         href: blog/index.qmd
-      - text: LangNet
-        href: apps/LangNet
       - text: Projects
         href: projects/index.qmd
       - text: About

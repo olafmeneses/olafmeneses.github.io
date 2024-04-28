@@ -2,9 +2,9 @@
   {
     "listing": "/blog/index.html",
     "items": [
-      "/blog/posts/LangNet/LangClust/LangClust.html",
-      "/blog/posts/LangNet/LangFacts/LangFacts.html",
-      "/blog/posts/init/init.html"
+      "/posts/LangNet/LangClust/index.html",
+      "/posts/LangNet/LangFacts/index.html",
+      "/posts/init/index.html"
     ]
   },
   {

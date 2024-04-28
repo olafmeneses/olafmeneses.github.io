@@ -13,7 +13,7 @@ format:
     code-fold: true
     css: style.css
 share:  
-  permalink: "https://olafmeneses.github.io/blog/posts/LangNums/LangFacts/LangFacts.qmd"
+  permalink: "https://olafmeneses.github.io/posts/LangNet/LangFacts"
 ---
 
 ```{r setup, include=FALSE}
@@ -40,9 +40,9 @@ Have you ever wondered if we could compare languages simply by examining their f
 
 Initially, I wanted to tackle this question in one post. However, as I explored the data further, I realized there was much more to uncover than I initially thought. Therefore, I've decided to split our journey into two separate posts.
 
-This post will serve as an introduction. We'll find out some interesting and fun facts from our first look into the data. But wait, there's more! The real fun is coming up in the next post: [From number names to language families](../LangClust/LangClust.qmd), which promises to be even more exciting and interesting (and colorful).
+This post will serve as an introduction. We'll find out some interesting and fun facts from our first look into the data. But wait, there's more! The real fun is coming up in the next post: [From number names to language families](../LangClust), which promises to be even more exciting and interesting (and colorful).
 
-As an added bonus, I've created a Shiny app where you can visualize +3800 languages in an interactive 3D plot. I personally think it's awesome. Even though I called it a bonus, it's so cool that it could be the main result of this project. Check out the Shiny app here: [https://olafmeneses.shinyapps.io/LangNet](https://olafmeneses.shinyapps.io/LangNet)
+As an added bonus, I've created a Shiny app where you can visualize +3800 languages in an interactive 3D plot. I personally think it's awesome. Even though I called it a bonus, it's so cool that it could be the main result of this project. Check out the Shiny app here: [https://olafmeneses.github.io/apps/LangNet](https://olafmeneses.github.io/apps/LangNet)
 
 I hope you find this initial exploration as fascinating as I did, where you'll discover some languages you probably didn't even know existed and some odd facts about them!
 
@@ -244,9 +244,9 @@ show_lang_num(data, ids = F, dom = "t")
 
 # What's next?
 
-In this post, we didn't really address my initial question: could we compare languages by looking at their first N number names sorted alphabetically? The initial idea was to answer it in the following section, but, as I explained at the beginning, I decided to include it in a different post. You can find it here: [From number names to language families](../LangClust/LangClust.qmd). It's way more interesting than this introductory post!
+In this post, we didn't really address my initial question: could we compare languages by looking at their first N number names sorted alphabetically? The initial idea was to answer it in the following section, but, as I explained at the beginning, I decided to include it in a different post. You can find it here: [From number names to language families](../LangClust). It's way more interesting than this introductory post!
 
-Moreover, I developed a Shiny app in which you get to visualize +3800 languages in an interactive 3D plot, which I think is pretty cool. You can have a look at it here: [https://olafmeneses.shinyapps.io/LangNet](https://olafmeneses.shinyapps.io/LangNet)
+Moreover, I developed a Shiny app in which you get to visualize +3800 languages in an interactive 3D plot, which I think is pretty cool. You can have a look at it here: [https://olafmeneses.github.io/apps/LangNet](https://olafmeneses.github.io/apps/LangNet)
 
 A big thank you to Mark Rosenfelder. His compilation of number names from over 5000 languages made this project more interesting.
 
