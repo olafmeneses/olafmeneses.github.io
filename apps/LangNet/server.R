@@ -81,9 +81,6 @@ function(input, output, session) {
     return(g_mod)
   })
   
-  observe({
-    print(paste(embedding_ls$current_embedding, embedding_ls$prev_embedding))
-  })
   output$distPlot <- renderScatterplotThree({
 
     if(req(embedding_ls$current_embedding) == req(embedding_ls$prev_embedding)){
