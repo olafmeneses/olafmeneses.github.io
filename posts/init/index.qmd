@@ -4,7 +4,7 @@ date: "01-02-2024"
 description: "A brief explanation"
 image: /images/init.jpg
 share:  
-  permalink: "https://olafmeneses.github.io/"
+  permalink: "https://olafmeneses.com"
 ---
 
 # This was a triumph! 

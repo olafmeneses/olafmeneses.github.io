@@ -4,7 +4,7 @@ project:
 
 website:
   title: "Olaf Meneses"
-  site-url: https://olafmeneses.github.io
+  site-url: https://olafmeneses.com
   description: "Projects & thoughts"
   image: /images/profile/2x/profile.png
   favicon: /images/profile/2x/favicon.png
@@ -12,7 +12,7 @@ website:
     creator: "@wooflaf"
   open-graph: true
   cookie-consent: true
-  google-analytics: "G-8HV19LN3J9"
+  google-analytics: "G-DY78XYNR65"
   navbar:
     right:
       - text: Blog

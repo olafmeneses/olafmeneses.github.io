@@ -13,7 +13,7 @@ format:
     code-fold: true
     css: style.css
 share:  
-  permalink: "https://olafmeneses.github.io/posts/LangNet/LangClust"
+  permalink: "https://olafmeneses.com/posts/LangNet/LangClust"
 ---
 
 ```{r setup, include=FALSE}
@@ -44,7 +44,7 @@ This post is a continuation of a previous post: [On sorting numbers alphabetical
 
 Given the title and description of the post, you can imagine what we will see today. The idea is to try some classification, clustering and dimensionality reduction techniques to see what these 10 words can tell us about different language families.
 
-As I mentioned in the previous post, I've also created a Shiny app where you can visualize +3800 languages in an interactive 3D plot. I think it's pretty cool. I highly recommend checking it out: [https://olafmeneses.github.io/apps/LangNet](https://olafmeneses.github.io/apps/LangNet)
+As I mentioned in the previous post, I've also created a Shiny app where you can visualize +3800 languages in an interactive 3D plot. I think it's pretty cool. I highly recommend checking it out: [https://olafmeneses.com/apps/LangNet](https://olafmeneses.com/apps/LangNet)
 
 Before we start getting into the matter, let's take a look at the data. For each language, we have the following information:
 
@@ -432,6 +432,6 @@ Let me repeat a sentence from this post (but now using the quotation style, as i
 
 >Stupid ideas sometimes (and only sometimes) lead you to interesting places.
 
-Don't forget to check out the Shiny app! [https://olafmeneses.github.io/apps/LangNet](https://olafmeneses.github.io/apps/LangNet).
+Don't forget to check out the Shiny app! [https://olafmeneses.com/apps/LangNet](https://olafmeneses.com/apps/LangNet).
 
 Feel free to comment below or email me at menesesolaf@gmail.com with any questions or suggestions. See you in the next post!
