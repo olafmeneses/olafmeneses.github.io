@@ -1,9 +1,9 @@
 ---
 title: ""
-image: /images/profile/2x/profile.png
+image: /images/profile/profile.jpg
 about: 
   template: trestles
-  image-shape: round
+  image-shape: rounded
   image-width: 23em
   links:
     - text: LinkedIn
@@ -22,22 +22,28 @@ about:
 
 # Hello!
 
-I'm Olaf, currently a third-year Data Science student at the University of Valencia. I have a strong foundation in key data science disciplines, a proven track record of academic excellence, and a passion for data-driven insights and innovation.
+I’m Olaf, a fourth-year Data Science student at the University of Valencia.
 
-### Academic Excellence
-Throughout my academic journey, I have consistently demonstrated my dedication to excellence. Only in the last two years, I have earned a total of 20 distinctions with Honors in various subjects, including: Statistical Inference, Databases, Data Processing, Data Visualization...
+Over the past three years, I've earned 25 distinctions with Honors in subjects such as Statistical Inference, Databases, Data Processing, and Data Visualization. While I'm proud of these achievements, my [personal projects](./projects/index.qmd) mean more to me than any grade — I'd be happy if you took a moment to check them out.
+
+Beyond data science, I love these little objects with strange symbols that people usually call _books_. I don't know why.
+
+Here's a brief overview of my work experience and the awards I’ve received:
+
+### Work Experience
+
+**Data Science Research Intern** @ IDAL, University of Valencia
+
+March 2024 - Sept. 2024
+
+- **Conducted research on Retrieval-Augmented Generation (RAG) techniques** as part of an internship at IDAL, leading to the creation of an innovative app named _AI Debate_.
+- **Developed _AI Debate_ from concept to completion**, which simulates debates between Spain’s Prime Minister and the opposition leader using _Large Language Models_ (LLMs) integrated with RAG methodologies.
 
 ### Awards and Recognition
 
-- First prize in the II Valencia SDG Data Visualization Contest (Sep. 2022), with the project [_Ruzafapp_](https://olafmeneses.shinyapps.io/ruzafapp).
-
-- Second prize in the Valencia SDG Data Visualization Contest (Sep. 2023), with the project [_VLC TrànsitAire_](https://olafmeneses.shinyapps.io/transitaire), where I collaborated with a team of five members.
-
-- Top 1% of University Entrance Exam (PAU) scores at the University of Valencia, out of nearly 7000 students.
-
-### Not everything is Data Science
-
-Beyond data science, I have a diverse range of passions, including exploring second-hand bookstores, finding inspiration in poetry and literature, and embarking on urban (and not so urban) adventures on foot. 
+- **First prize** in the II Valencia SDG Data Visualization Contest (Sep. 2022), for the project *Ruzafapp*.
+- **Second prize** in the Valencia SDG Data Visualization Contest (Sep. 2023), for the project *VLC TrànsitAire*, where I collaborated with a team of five.
+- **Top 1%** of University Entrance Exam (PAU) scores at the University of Valencia, out of nearly 7000 students.
 
 ```{=html}
 </div>
