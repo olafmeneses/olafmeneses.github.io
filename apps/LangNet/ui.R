@@ -66,7 +66,7 @@ fluidPage(
   ),
   
   div(style = "position: absolute; bottom: 0; right: 0; margin: 12px; margin-right: 25px;",
-      HTML('<a href="https://olafmeneses.github.io/" style="font-size:28px; text-decoration: none; color: white;">Made by Olaf Meneses</a>')
+      HTML('<a href="https://olafmeneses.com/" style="font-size:28px; text-decoration: none; color: white;">Made by Olaf Meneses</a>')
   ),
   
   

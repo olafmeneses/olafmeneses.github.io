@@ -2,7 +2,7 @@
 title: "What is this for?"
 date: "01-02-2024"
 description: "A brief explanation"
-image: /images/init.jpg
+image: /images/posts/init/init.jpg
 share:  
   permalink: "https://olafmeneses.com"
 ---

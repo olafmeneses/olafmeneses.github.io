@@ -5,11 +5,11 @@ function(input, output, session) {
       title = "<h2 style = 'font-size: 36px; color: rgb(0,0,0, 95%); margin: 0; margin-bottom:10px;'>LangNet</h2><h3 style = 'font-size: 30px; margin-bottom: 0px; margin-top: 0px;'>Exploring language families through numbers 1 to 10</h3>",
       text = "
 <h3 style='font-size: 26px; text-align: justify; margin-top: 0px; color: rgb(0,0,0, 85%);'><b>Welcome!</b></h3>
-<p style='font-size: 22px; text-align: justify;'>This app is the culmination of two previous blog posts, one of which is <a href='https://olafmeneses.github.io/posts/LangNet/LangFacts'>On sorting numbers alphabetically in different languages and other absurdities</a>.</p>
+<p style='font-size: 22px; text-align: justify;'>This app is the culmination of two previous blog posts, one of which is <a href='https://olafmeneses.com/posts/langnet/langfacts/'>On sorting numbers alphabetically in different languages and other absurdities</a>.</p>
 
 <h3 style='font-size: 26px; text-align: justify; color: rgb(0,0,0, 85%);'><b>Explanation</b></h3>
 <p style='font-size: 22px; text-align: justify;'>LangNet offers a <strong>3D visualization of language relationships</strong>. Each point represents a language, with edges connecting it to its two nearest languages.
-<br><br>The distance between languages is calculated as the sum of normalized <a href='https://en.wikipedia.org/wiki/Damerau%E2%80%93Levenshtein_distance'>Damerau-Levenshtein</a> distances between the number names of languages from 1 to 10. Despite using only this limited information, the results are quite good. If you're curious, check out the blog post <a href='https://olafmeneses.github.io/posts/LangNet/LangClust'>From number names to language families</a>.</p>
+<br><br>The distance between languages is calculated as the sum of normalized <a href='https://en.wikipedia.org/wiki/Damerau%E2%80%93Levenshtein_distance'>Damerau-Levenshtein</a> distances between the number names of languages from 1 to 10. Despite using only this limited information, the results are quite good. If you're curious, check out the blog post <a href='https://olafmeneses.com/posts/langnet/langclust/'>From number names to language families</a>.</p>
 
 <h3 style='font-size: 26px; text-align: justify; color: rgb(0,0,0, 85%);'><b>How to customize the visualization</b></h3>
 <p style='font-size: 22px; text-align: justify;'>At the top right corner, you'll find a configuration button. Clicking it reveals a dropdown menu where you can personalize the visualization.

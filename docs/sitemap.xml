@@ -1,56 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://olafmeneses.github.io/blog/index.html</loc>
-    <lastmod>2024-04-28T17:04:25.848Z</lastmod>
-  </url>
-  <url>
-    <loc>https://olafmeneses.github.io/index.html</loc>
-    <lastmod>2024-04-05T15:37:10.290Z</lastmod>
-  </url>
-  <url>
-    <loc>https://olafmeneses.github.io/projects/ruzafapp.html</loc>
-    <lastmod>2024-04-05T16:28:17.006Z</lastmod>
-  </url>
-  <url>
-    <loc>https://olafmeneses.github.io/projects/index.html</loc>
-    <lastmod>2024-04-05T16:19:18.974Z</lastmod>
-  </url>
-  <url>
-    <loc>https://olafmeneses.github.io/posts/LangNet/LangFacts/index.html</loc>
-    <lastmod>2024-04-28T17:10:53.434Z</lastmod>
-  </url>
-  <url>
-    <loc>https://olafmeneses.github.io/posts/init/index.html</loc>
-    <lastmod>2024-04-28T17:09:37.381Z</lastmod>
-  </url>
-  <url>
-    <loc>https://olafmeneses.github.io/posts/LangNet/LangClust/index.html</loc>
-    <lastmod>2024-04-28T17:11:31.424Z</lastmod>
-  </url>
-  <url>
-    <loc>https://olafmeneses.github.io/projects/DelFuegoAlDato.html</loc>
-    <lastmod>2024-04-05T16:25:19.477Z</lastmod>
-  </url>
-  <url>
-    <loc>https://olafmeneses.github.io/projects/LangNet.html</loc>
-    <lastmod>2024-04-05T16:15:11.188Z</lastmod>
-  </url>
-  <url>
-    <loc>https://olafmeneses.github.io/projects/transitaire.html</loc>
-    <lastmod>2024-04-05T16:29:54.406Z</lastmod>
-  </url>
-  <url>
-    <loc>https://olafmeneses.github.io/apps/LangNet/index.html</loc>
-    <lastmod>2024-04-28T17:29:54.406Z</lastmod>
-  </url>
-  <url>
-    <loc>https://olafmeneses.com/blog/index.html</loc>
-    <lastmod>2024-04-28T17:04:25.848Z</lastmod>
-  </url>
-  <url>
     <loc>https://olafmeneses.com/index.html</loc>
-    <lastmod>2024-04-05T15:37:10.290Z</lastmod>
+    <lastmod>2024-09-24T10:32:32.970Z</lastmod>
   </url>
   <url>
     <loc>https://olafmeneses.com/projects/ruzafapp.html</loc>
@@ -62,15 +14,7 @@
   </url>
   <url>
     <loc>https://olafmeneses.com/posts/LangNet/LangFacts/index.html</loc>
-    <lastmod>2024-05-01T21:33:23.890Z</lastmod>
-  </url>
-  <url>
-    <loc>https://olafmeneses.com/posts/init/index.html</loc>
-    <lastmod>2024-05-01T21:32:12.325Z</lastmod>
-  </url>
-  <url>
-    <loc>https://olafmeneses.com/posts/LangNet/LangClust/index.html</loc>
-    <lastmod>2024-05-01T21:32:51.830Z</lastmod>
+    <lastmod>2024-09-24T10:56:54.558Z</lastmod>
   </url>
   <url>
     <loc>https://olafmeneses.com/projects/DelFuegoAlDato.html</loc>
@@ -83,5 +27,21 @@
   <url>
     <loc>https://olafmeneses.com/projects/transitaire.html</loc>
     <lastmod>2024-04-05T16:29:54.406Z</lastmod>
+  </url>
+  <url>
+    <loc>https://olafmeneses.com/blog/index.html</loc>
+    <lastmod>2024-04-28T17:04:25.848Z</lastmod>
+  </url>
+  <url>
+    <loc>https://olafmeneses.com/posts/init/index.html</loc>
+    <lastmod>2024-09-24T10:59:04.321Z</lastmod>
+  </url>
+  <url>
+    <loc>https://olafmeneses.com/posts/LangNet/LangClust/index.html</loc>
+    <lastmod>2024-09-24T10:56:23.147Z</lastmod>
+  </url>
+  <url>
+    <loc>https://olafmeneses.com/apps/LangNet/index.html</loc>
+    <lastmod>2024-09-24T10:56:23.147Z</lastmod>
   </url>
 </urlset>

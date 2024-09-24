@@ -3,7 +3,7 @@ title: "On sorting numbers alphabetically in different languages and other absur
 description: "First contact with numbers 1-10 across +5000 languages and curious insights"
 author: "Olaf Meneses"
 date: "2024-03-31"
-image: /images/LangFacts.png
+image: /images/posts/LangFacts/LangFacts.png
 bibliography: references.bib
 output: manuscript
 lightbox: auto

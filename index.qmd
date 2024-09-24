@@ -6,13 +6,13 @@ about:
   image-shape: rounded
   image-width: 23em
   links:
-    - text: LinkedIn
+    - icon: linkedin
+      text: LinkedIn
       href: https://www.linkedin.com/in/olaf-meneses/en
-    - text: Twitter
-      href: https://twitter.com/wooflaf
-    - text: GitHub
+    - icon: github
+      text: GitHub
       href: https://github.com/olafmeneses
-    - text: Email
+    - text: "{{< iconify material-symbols:mail-outline >}} Email"
       href: mailto:menesesolaf@gmail.com
 ---
 

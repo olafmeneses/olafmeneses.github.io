@@ -1,17 +1,10 @@
 [
   {
-    "objectID": "blog/index.html",
-    "href": "blog/index.html",
-    "title": "Blog",
-    "section": "",
-    "text": "From number names to language families\n\n\n21 min\n\n\nWith numbers 1-10, just 10 words, can we classify languages into known language families?\n\n\n\nMonday, April 1, 2024\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nOn sorting numbers alphabetically in different languages and other absurdities\n\n\n11 min\n\n\nFirst contact with numbers 1-10 across +5000 languages and curious insights\n\n\n\nSunday, March 31, 2024\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nWhat is this for?\n\n\n3 min\n\n\nA brief explanation\n\n\n\nTuesday, January 2, 2024\n\n\n\n\n\n\n\n\nNo matching items"
-  },
-  {
     "objectID": "index.html",
     "href": "index.html",
     "title": "Hello!",
     "section": "",
-    "text": "Hello!\nI’m Olaf, currently a third-year Data Science student at the University of Valencia. I have a strong foundation in key data science disciplines, a proven track record of academic excellence, and a passion for data-driven insights and innovation.\n\nAcademic Excellence\nThroughout my academic journey, I have consistently demonstrated my dedication to excellence. Only in the last two years, I have earned a total of 20 distinctions with Honors in various subjects, including: Statistical Inference, Databases, Data Processing, Data Visualization…\n\n\nAwards and Recognition\n\nFirst prize in the II Valencia SDG Data Visualization Contest (Sep. 2022), with the project Ruzafapp.\nSecond prize in the Valencia SDG Data Visualization Contest (Sep. 2023), with the project VLC TrànsitAire, where I collaborated with a team of five members.\nTop 1% of University Entrance Exam (PAU) scores at the University of Valencia, out of nearly 7000 students.\n\n\n\nNot everything is Data Science\nBeyond data science, I have a diverse range of passions, including exploring second-hand bookstores, finding inspiration in poetry and literature, and embarking on urban (and not so urban) adventures on foot."
+    "text": "Hello!\nI’m Olaf, a fourth-year Data Science student at the University of Valencia.\nOver the past three years, I’ve earned 25 distinctions with Honors in subjects such as Statistical Inference, Databases, Data Processing, and Data Visualization. While I’m proud of these achievements, my personal projects mean more to me than any grade — I’d be happy if you took a moment to check them out.\nBeyond data science, I love these little objects with strange symbols that people usually call books. I don’t know why.\nHere’s a brief overview of my work experience and the awards I’ve received:\n\nWork Experience\nData Science Research Intern @ IDAL, University of Valencia\nMarch 2024 - Sept. 2024\n\nConducted research on Retrieval-Augmented Generation (RAG) techniques as part of an internship at IDAL, leading to the creation of an innovative app named AI Debate.\nDeveloped AI Debate from concept to completion, which simulates debates between Spain’s Prime Minister and the opposition leader using Large Language Models (LLMs) integrated with RAG methodologies.\n\n\n\nAwards and Recognition\n\nFirst prize in the II Valencia SDG Data Visualization Contest (Sep. 2022), for the project Ruzafapp.\nSecond prize in the Valencia SDG Data Visualization Contest (Sep. 2023), for the project VLC TrànsitAire, where I collaborated with a team of five.\nTop 1% of University Entrance Exam (PAU) scores at the University of Valencia, out of nearly 7000 students."
   },
   {
     "objectID": "projects/ruzafapp.html",
@@ -63,6 +56,34 @@
     "text": "And with the least number of characters?\nExceptuating (again) the languages where we have the numerals or the written form of the numbers, the majority of them are constructed languages. Seems like there are some languages which assign the vocal letters {a,e,i,o,u} to the numbers following some order. I’ve been trying to find some information about this but haven’t found anything interesting. The only thing I know is that Zahlensprache means Number language."
   },
   {
+    "objectID": "projects/DelFuegoAlDato.html",
+    "href": "projects/DelFuegoAlDato.html",
+    "title": "Del Fuego Al Dato",
+    "section": "",
+    "text": "Link (Spanish): https://olafmeneses.shinyapps.io/delfuegoaldato Post under construction…"
+  },
+  {
+    "objectID": "projects/LangNet.html",
+    "href": "projects/LangNet.html",
+    "title": "LangNet",
+    "section": "",
+    "text": "Link (English): https://olafmeneses.shinyapps.io/LangNet Post under construction…"
+  },
+  {
+    "objectID": "projects/transitaire.html",
+    "href": "projects/transitaire.html",
+    "title": "VLC TrànsitAire",
+    "section": "",
+    "text": "Link (Spanish): https://olafmeneses.shinyapps.io/transitaire Post under construction…"
+  },
+  {
+    "objectID": "blog/index.html",
+    "href": "blog/index.html",
+    "title": "Blog",
+    "section": "",
+    "text": "From number names to language families\n\n\n21 min\n\n\nWith numbers 1-10, just 10 words, can we classify languages into known language families?\n\n\n\nMonday, April 1, 2024\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nOn sorting numbers alphabetically in different languages and other absurdities\n\n\n11 min\n\n\nFirst contact with numbers 1-10 across +5000 languages and curious insights\n\n\n\nSunday, March 31, 2024\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nWhat is this for?\n\n\n3 min\n\n\nA brief explanation\n\n\n\nTuesday, January 2, 2024\n\n\n\n\n\n\n\n\nNo matching items"
+  },
+  {
     "objectID": "posts/init/index.html",
     "href": "posts/init/index.html",
     "title": "What is this for?",
@@ -103,26 +124,5 @@
     "title": "From number names to language families",
     "section": "Hierarchical clustering",
     "text": "Hierarchical clustering\nWe carried out a hierarchical cluster analysis using the McQuitty agglomeration (linkage) method to explore the linguistic relationships within the Indo-European language family. The decision to focus on Indo-European languages was intentional for two reasons. Firstly, the Indo-European language family stands out as one of the most thoroughly researched and widely recognized language families in linguistics; therefore, we have greater certainty about the established subfamilies. Secondly, by selecting a reduced subset, we simplify the visualization.\nNote: Every dendrogram will be preceded by a legend, providing clarity on the color scheme used to represent different language subfamilies.\nFor this first dendrogram, we color-coded each language based on its first subfamily. By visualizing the dendrogram in this manner, we gain insights into the higher-level relationships among language subfamilies, such as Germanic, Romance, Slavic, and others.\n\n\n\n\n\n\n\n\n\n\n\n\n\nIn this second dendrogram, we opted to color-code each language according to its deepest subfamily possible within the Indo-European family tree. For instance, if two languages belong to the same subfamily but diverge at deeper levels, they will be represented with distinct colors in the dendrogram. This approach tries to visualize with finer detail how Indo-European languages are connected and how they’ve evolved. Although the dendrogram is not perfect, I would say it is quite good and approximates the established subfamilies."
-  },
-  {
-    "objectID": "projects/DelFuegoAlDato.html",
-    "href": "projects/DelFuegoAlDato.html",
-    "title": "Del Fuego Al Dato",
-    "section": "",
-    "text": "Link (Spanish): https://olafmeneses.shinyapps.io/delfuegoaldato Post under construction…"
-  },
-  {
-    "objectID": "projects/LangNet.html",
-    "href": "projects/LangNet.html",
-    "title": "LangNet",
-    "section": "",
-    "text": "Link (English): https://olafmeneses.shinyapps.io/LangNet Post under construction…"
-  },
-  {
-    "objectID": "projects/transitaire.html",
-    "href": "projects/transitaire.html",
-    "title": "VLC TrànsitAire",
-    "section": "",
-    "text": "Link (Spanish): https://olafmeneses.shinyapps.io/transitaire Post under construction…"
   }
 ]

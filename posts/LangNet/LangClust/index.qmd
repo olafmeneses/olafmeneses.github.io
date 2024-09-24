@@ -3,7 +3,7 @@ title: "From number names to language families"
 description: "With numbers 1-10, just 10 words, can we classify languages into known language families?"
 author: "Olaf Meneses"
 date: "2024-04-01"
-image: /images/LangClust.png
+image: /images/posts/LangClust/LangClust.png
 bibliography: references.bib
 output: manuscript
 lightbox: auto
