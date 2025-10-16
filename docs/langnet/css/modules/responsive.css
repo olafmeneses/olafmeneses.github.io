@@ -1,0 +1,867 @@
+﻿@media (max-width: 1024px) {
+    .modern-side-panel {
+        width: 420px;
+        right: 16px;
+    }
+    
+    .floating-controls {
+        position: static;
+        flex-direction: row;
+        gap: 8px;
+        margin-bottom: 16px;
+        padding: 16px 20px 0;
+    }
+    
+    .control-group {
+        flex: 1;
+    }
+}
+
+
+@media (max-width: 768px) {
+    .modern-side-panel {
+        width: min(380px, calc(100vw - 24px));
+        right: 12px;
+        max-height: calc(100vh - 100px);
+        top: 60px;
+    }
+
+    .modern-panel-toggle {
+        left: -48px;
+        width: 44px;
+        height: 44px;
+    }
+
+    #global-search {
+        top: 12px;
+        width: min(420px, calc(100vw - 24px));
+    }
+
+    .enhanced-search {
+        border-radius: 12px;
+    }
+
+    .search-input-group {
+        padding: 14px 20px;
+    }
+
+    .search-filters {
+        padding: 10px 20px;
+        gap: 6px;
+    }
+
+    .filter-quick-btn {
+        padding: 6px 12px;
+        font-size: 12px;
+    }
+
+    .panel-header {
+        padding: 20px 20px 16px;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
+    }
+
+    .panel-stats {
+        align-self: flex-end;
+        gap: 12px;
+    }
+
+    .modern-tabs {
+        flex-wrap: wrap;
+    }
+
+    .tab-button {
+        padding: 12px 10px;
+        font-size: 12px;
+        gap: 6px;
+    }
+
+    .tab-icon {
+        width: 14px;
+        height: 14px;
+    }
+
+    .floating-controls {
+        flex-direction: column;
+        position: static;
+        margin-bottom: 16px;
+        padding: 16px 20px 0;
+    }
+
+    .segmented-control label {
+        padding: 6px 8px;
+        font-size: 11px;
+    }
+
+    
+    .mode-selector {
+        display: none !important;
+    }
+
+    
+    #floating-controls-wrapper {
+        position: fixed;
+        top: auto;
+        bottom: 20px;
+        left: 12px;
+        right: auto;
+        flex-direction: row;
+        gap: 8px;
+        justify-content: flex-start;
+    }
+
+    .control-panel-container {
+        flex-direction: row;
+        background: transparent;
+        border: none;
+        box-shadow: none;
+        backdrop-filter: none;
+        padding: 0;
+    }
+
+    .control-panel-container:hover {
+        transform: none;
+        box-shadow: none;
+    }
+
+    #floating-controls {
+        background: transparent;
+        padding: 0;
+        border-radius: 0;
+    }
+
+    .layout-selector {
+        flex-direction: row;
+    }
+
+    .floating-label {
+        display: none;
+    }
+
+    .control-separator {
+        display: none;
+    }
+
+    .floating-buttons {
+        display: flex;
+        gap: 8px;
+        order: 1;
+    }
+
+    .floating-btn {
+        min-width: 56px;
+        min-height: 56px;
+        padding: 12px;
+        background: rgba(8, 8, 16, 0.85);
+        border: 1.5px solid rgba(99, 102, 241, 0.4);
+        border-radius: 16px;
+        backdrop-filter: blur(24px);
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+    }
+
+    .floating-btn .btn-icon {
+        width: 24px;
+        height: 24px;
+    }
+
+    .floating-btn .btn-label {
+        font-size: 9px;
+    }
+
+    .control-tabs-row {
+        background: transparent;
+        padding: 0;
+        order: 2;
+        margin-left: auto;
+    }
+
+    .control-tab-btn {
+        min-width: 56px;
+        min-height: 56px;
+        padding: 12px;
+        background: rgba(8, 8, 16, 0.85);
+        border: 1.5px solid rgba(99, 102, 241, 0.4);
+        border-radius: 16px;
+        backdrop-filter: blur(24px);
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+    }
+
+    
+    .ui-overlay.bottom-right-credit {
+        position: fixed;
+        top: auto;
+        bottom: 20px;
+        right: 12px;
+        left: auto;
+        flex-direction: row;
+        gap: 8px;
+        justify-content: flex-start;
+    }
+
+    
+    #info-panel-collapsible {
+        position: fixed;
+        bottom: 90px;
+        max-height: calc(100vh - 180px);
+        right: 12px;
+        left: 12px;
+        max-width: calc(100vw - 24px);
+    }
+
+    #info-panel-collapsible:not(.hidden) {
+        max-height: calc(100vh - 180px);
+    }
+
+    .info-panel-content {
+        max-height: calc(100vh - 220px);
+    }
+
+    
+    .ui-overlay.top-left-info {
+        top: 12px;
+        left: 12px;
+        right: 12px;
+    }
+
+    .language-info {
+        max-width: 100%;
+    }
+
+    
+    .language-modal-content {
+        width: calc(100vw - 40px);
+        max-width: 600px;
+        min-width: auto;
+        max-height: calc(100vh - 80px);
+        margin: 20px;
+        padding: 0;
+    }
+
+    #language-modal-body {
+        padding: 20px;
+        max-height: calc(100vh - 140px);
+    }
+
+    .modal-header-modern {
+        padding: 20px 20px 16px;
+    }
+
+    .modal-language-title {
+        font-size: 20px;
+    }
+
+    .comparison-container {
+        padding: 16px;
+    }
+
+    .comparison-numbers {
+        gap: 12px;
+    }
+
+    .comparison-row > * {
+        padding: 10px 12px;
+    }
+
+    .comparison-num-label {
+        font-size: 14px;
+    }
+
+    .comparison-value {
+        font-size: 14px;
+    }
+}
+
+
+@media (max-width: 480px) {
+    .side-panel {
+        width: min(360px, calc(100vw - 24px));
+        right: 12px;
+        max-height: calc(100vh - 40px);
+    }
+
+    .side-panel-toggle {
+        left: -50px;
+    }
+
+    #global-search {
+        top: 16px;
+    }
+
+    .floating-search {
+        width: calc(100vw - 24px);
+    }
+
+    .language-info {
+        padding: 20px;
+        max-width: 350px;
+    }
+
+    .language-info h2 {
+        font-size: 24px;
+    }
+
+    .language-info h3 {
+        font-size: 18px;
+    }
+
+    .numbers-grid {
+        grid-template-columns: repeat(4, 1fr);
+        gap: 8px;
+    }
+
+    .controls-panel {
+        min-width: 280px;
+        padding: 20px;
+    }
+
+    
+    .mode-selector {
+        display: none !important;
+    }
+
+    
+    #floating-controls-wrapper {
+        position: fixed;
+        top: auto;
+        bottom: 16px;
+        left: 8px;
+        right: auto;
+        flex-direction: row;
+        gap: 6px;
+        justify-content: flex-start;
+    }
+
+    .control-panel-container {
+        flex-direction: row;
+        background: transparent;
+        border: none;
+        box-shadow: none;
+        backdrop-filter: none;
+        padding: 0;
+    }
+
+    .control-panel-container:hover {
+        transform: none;
+        box-shadow: none;
+    }
+
+    #floating-controls {
+        background: transparent;
+        padding: 0;
+        border-radius: 0;
+    }
+
+    .layout-selector {
+        flex-direction: row;
+    }
+
+    .floating-label {
+        display: none;
+    }
+
+    .control-separator {
+        display: none;
+    }
+
+    .floating-buttons {
+        display: flex;
+        gap: 6px;
+        order: 1;
+    }
+
+    .floating-btn {
+        min-width: 48px;
+        min-height: 48px;
+        padding: 10px;
+        background: rgba(8, 8, 16, 0.9);
+        border: 1.5px solid rgba(99, 102, 241, 0.5);
+        border-radius: 14px;
+        backdrop-filter: blur(20px);
+        box-shadow: 0 6px 24px rgba(0, 0, 0, 0.6);
+    }
+
+    .floating-btn .btn-icon {
+        width: 20px;
+        height: 20px;
+    }
+
+    .floating-btn .btn-label {
+        font-size: 8px;
+    }
+
+    .control-tabs-row {
+        background: transparent;
+        padding: 0;
+        order: 2;
+        margin-left: auto;
+    }
+
+    .control-tab-btn {
+        min-width: 48px;
+        min-height: 48px;
+        padding: 10px;
+        background: rgba(8, 8, 16, 0.9);
+        border: 1.5px solid rgba(99, 102, 241, 0.5);
+        border-radius: 14px;
+        backdrop-filter: blur(20px);
+        box-shadow: 0 6px 24px rgba(0, 0, 0, 0.6);
+    }
+
+    .control-tab-btn .tab-icon {
+        width: 20px;
+        height: 20px;
+    }
+
+    .control-tab-btn .tab-label {
+        font-size: 8px;
+    }
+
+    
+    .ui-overlay.bottom-right-credit {
+        bottom: 16px;
+        right: 8px;
+        left: auto;
+    }
+
+    .creator-credit {
+        padding: 8px 12px;
+        gap: 8px;
+        background: rgba(8, 8, 16, 0.9);
+        border: 1px solid rgba(99, 102, 241, 0.3);
+        border-radius: 12px;
+        backdrop-filter: blur(20px);
+        box-shadow: 0 6px 24px rgba(0, 0, 0, 0.6);
+    }
+
+    .creator-icon {
+        width: 16px;
+        height: 16px;
+    }
+
+    .credit-label {
+        font-size: 9px;
+    }
+
+    .credit-link {
+        font-size: 11px;
+    }
+}
+
+
+@media (max-width: 480px) {
+    .modern-side-panel {
+        width: calc(100vw - 16px);
+        right: 8px;
+        left: 8px;
+        top: 50px;
+        max-height: calc(100vh - 200px);
+    }
+
+    .modern-side-panel.collapsed {
+        transform: translateX(calc(100% - 40px));
+    }
+
+    .modern-panel-toggle {
+        left: -36px;
+        width: 36px;
+        height: 36px;
+        border-radius: 18px 0 0 18px;
+    }
+
+    .toggle-icon {
+        width: 16px;
+        height: 16px;
+    }
+
+    .toggle-hint {
+        font-size: 8px;
+    }
+
+    #global-search {
+        top: 8px;
+        width: calc(100vw - 16px);
+    }
+
+    .search-input-group {
+        padding: 12px 16px;
+        gap: 12px;
+    }
+
+    .search-icon {
+        width: 18px;
+        height: 18px;
+    }
+
+    #global-search-input {
+        font-size: 14px;
+    }
+
+    .search-filters {
+        padding: 8px 16px;
+        gap: 4px;
+    }
+
+    .filter-quick-btn {
+        padding: 4px 8px;
+        font-size: 11px;
+        border-radius: 12px;
+    }
+
+    .panel-header {
+        padding: 16px 16px 12px;
+    }
+
+    .panel-title {
+        font-size: 20px;
+    }
+
+    .panel-subtitle {
+        font-size: 12px;
+    }
+
+    .stat-item {
+        gap: 1px;
+    }
+
+    .stat-label {
+        font-size: 9px;
+    }
+
+    .stat-value {
+        font-size: 12px;
+    }
+
+    .modern-tabs {
+        padding: 0 16px;
+    }
+
+    .tab-button {
+        padding: 10px 8px;
+        font-size: 11px;
+        gap: 4px;
+    }
+
+    .tab-icon {
+        width: 12px;
+        height: 12px;
+    }
+
+    .tab-content {
+        padding: 0 16px 16px;
+        max-height: calc(100vh - 300px);
+    }
+
+    .tab-panel {
+        padding-top: 16px;
+    }
+
+    .welcome-section {
+        margin-bottom: 24px;
+    }
+
+    .welcome-section h2 {
+        font-size: 18px;
+        margin-bottom: 8px;
+    }
+
+    .welcome-section p {
+        font-size: 13px;
+        margin-bottom: 12px;
+    }
+
+    .guide-link {
+        font-size: 13px;
+        padding: 6px 12px;
+        gap: 6px;
+    }
+
+    .legend-section {
+        margin-bottom: 24px;
+    }
+
+    .legend-section h3 {
+        font-size: 14px;
+        margin-bottom: 12px;
+    }
+
+    .legend-item {
+        padding: 8px;
+        gap: 8px;
+    }
+
+    .legend-icon {
+        width: 28px;
+        height: 28px;
+    }
+
+    .legend-item strong {
+        font-size: 13px;
+    }
+
+    .legend-item p {
+        font-size: 11px;
+    }
+
+    .families-header h2 {
+        font-size: 16px;
+    }
+
+    .families-header p {
+        font-size: 12px;
+    }
+
+    .family-controls {
+        gap: 12px;
+        margin-bottom: 16px;
+    }
+
+    #family-search-input {
+        padding: 10px 10px 10px 32px;
+        font-size: 13px;
+    }
+
+    .search-icon-small {
+        left: 10px;
+        width: 14px;
+        height: 14px;
+    }
+
+    .family-actions {
+        gap: 6px;
+    }
+
+    .action-btn {
+        padding: 8px 10px;
+        font-size: 11px;
+    }
+
+    .selected-families-summary {
+        padding: 10px 12px;
+        margin-bottom: 16px;
+    }
+
+    #selected-count {
+        font-size: 12px;
+    }
+
+    .apply-filter-btn {
+        padding: 6px 12px;
+        font-size: 11px;
+    }
+
+    .families-grid-container {
+        max-height: 200px;
+    }
+
+    .family-item {
+        padding: 8px;
+        gap: 8px;
+    }
+
+    .family-name {
+        font-size: 13px;
+    }
+
+    .family-count {
+        font-size: 11px;
+    }
+
+    
+    #info-panel-collapsible {
+        position: fixed;
+        bottom: 80px;
+        max-height: calc(100vh - 160px);
+        right: 8px;
+        left: 8px;
+        max-width: calc(100vw - 16px);
+    }
+
+    #info-panel-collapsible:not(.hidden) {
+        max-height: calc(100vh - 160px);
+    }
+
+    .info-panel-content {
+        max-height: calc(100vh - 200px);
+        padding: 16px;
+    }
+
+    
+    .ui-overlay.top-left-info {
+        top: 8px;
+        left: 8px;
+        right: 8px;
+    }
+
+    .language-info {
+        max-width: 100%;
+        padding: 12px 16px;
+        font-size: 14px;
+    }
+
+    .language-info h2 {
+        font-size: 16px;
+    }
+
+    
+    .language-modal-content {
+        width: calc(100vw - 24px);
+        max-width: 100%;
+        min-width: auto;
+        max-height: calc(100vh - 40px);
+        margin: 12px;
+        padding: 0;
+        border-radius: 16px;
+    }
+
+    #language-modal-body {
+        padding: 16px;
+        max-height: calc(100vh - 100px);
+        overflow-y: auto;
+    }
+
+    .language-modal-close {
+        top: 12px;
+        right: 12px;
+        width: 32px;
+        height: 32px;
+        font-size: 24px;
+    }
+
+    .modal-header-modern {
+        padding: 16px 16px 12px;
+    }
+
+    .modal-language-title {
+        font-size: 18px;
+        margin-bottom: 8px;
+    }
+
+    .modal-hint {
+        font-size: 10px !important;
+        margin-top: 6px !important;
+    }
+
+    .family-tree-modal,
+    .family-tree-colored {
+        font-size: 11px;
+        flex-wrap: wrap;
+    }
+
+    .family-part {
+        font-size: 11px;
+    }
+
+    .family-arrow {
+        font-size: 10px;
+    }
+
+    .modal-comparison-container {
+        padding: 12px;
+    }
+
+    .comparison-section-title {
+        font-size: 12px;
+        margin-bottom: 12px;
+    }
+
+    .comparison-header {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        margin-bottom: 12px;
+        padding: 12px;
+        grid-template-columns: none;
+    }
+
+    .comparison-header::before {
+        display: none;
+    }
+
+    .comparison-col {
+        padding: 12px;
+    }
+
+    .comparison-lang-name {
+        font-size: 14px !important;
+    }
+
+    .comparison-numbers {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        grid-template-columns: none;
+    }
+
+    .comparison-row {
+        display: grid;
+        grid-template-columns: 32px 1fr 1fr;
+        gap: 8px;
+        align-items: center;
+    }
+
+    .comparison-row > * {
+        padding: 8px 6px;
+    }
+
+    .comparison-num-label {
+        min-width: 32px;
+        font-size: 11px;
+        padding: 6px !important;
+    }
+
+    .comparison-value {
+        font-size: 12px;
+        padding: 8px 6px;
+        border-left-width: 3px;
+    }
+
+    .modal-section {
+        padding: 12px;
+    }
+
+    .modal-section-title {
+        font-size: 14px;
+        margin-bottom: 12px;
+    }
+
+    .modal-numbers-list {
+        gap: 6px;
+    }
+
+    .modal-number-row {
+        padding: 8px;
+        gap: 8px;
+    }
+
+    .modal-number-label {
+        min-width: 24px;
+        font-size: 12px;
+    }
+
+    .modal-number-value {
+        font-size: 13px;
+    }
+}
+
+
+@media (min-width: 1440px) {
+    .modern-side-panel {
+        width: 520px;
+        right: 32px;
+    }
+
+    #global-search {
+        width: min(580px, calc(100vw - 64px));
+        top: 24px;
+    }
+
+    .tab-content {
+        max-height: calc(100vh - 280px);
+    }
+
+    .families-grid-container {
+        max-height: 350px;
+    }
+}
+

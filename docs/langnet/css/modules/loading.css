@@ -1,0 +1,412 @@
+﻿.loading {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 25%, #16213e 50%, #0f3460 75%, #0a0a0a 100%);
+    background-size: 400% 400%;
+    animation: gradientShift 8s ease infinite;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    z-index: 200;
+    overflow: hidden;
+    pointer-events: none;
+}
+
+.loading.hidden {
+    display: none !important;
+}
+
+.loading::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(circle at 30% 20%, rgba(76, 175, 80, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 70% 80%, rgba(33, 150, 243, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.05) 0%, transparent 70%);
+    animation: backgroundPulse 4s ease-in-out infinite;
+}
+
+.loading-wrapper {
+    position: relative;
+    z-index: 10;
+    pointer-events: auto;
+}
+
+.loading-animation {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
+.loading-logo {
+    width: 60%;
+    max-width: 300px;
+    margin-bottom: 3%;
+    animation: fadeInUp 1s ease-out;
+}
+
+.loading-title {
+    color: white;
+    font-size: 30px;
+    font-weight: 400;
+    font-family: 'Montserrat', sans-serif;
+    margin: 0 0 3% 0;
+    animation: fadeInUp 1s ease-out 0.2s both;
+}
+
+.loading-subtitle {
+    color: white;
+    font-size: 20px;
+    font-weight: 300;
+    font-family: 'Montserrat', sans-serif;
+    margin: 0;
+    animation: fadeInUp 1s ease-out 0.4s both;
+}
+
+
+
+.dots {
+    display: inline-block;
+}
+
+.dots span {
+    animation: blink 1.4s infinite;
+}
+
+.dots span:nth-child(1) {
+    animation-delay: 0s;
+}
+
+.dots span:nth-child(2) {
+    animation-delay: 0.2s;
+}
+
+.dots span:nth-child(3) {
+    animation-delay: 0.4s;
+}
+
+@keyframes blink {
+    0%, 80%, 100% {
+        opacity: 0;
+    }
+    40% {
+        opacity: 1;
+    }
+}
+
+
+@keyframes gradientShift {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+@keyframes backgroundPulse {
+    0%, 100% { opacity: 0.3; }
+    50% { opacity: 0.6; }
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+.welcome-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 190;
+    animation: modal-fade-in 0.3s ease;
+}
+
+.welcome-modal.hidden {
+    display: none !important;
+}
+
+@keyframes modal-fade-in {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+.welcome-modal-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(8px);
+}
+
+.welcome-modal-content {
+    position: relative;
+    max-width: 800px;
+    max-height: 90vh;
+    background: linear-gradient(145deg, rgba(8, 8, 16, 0.95), rgba(16, 18, 28, 0.98));
+    border: 1.5px solid rgba(99, 102, 241, 0.3);
+    border-radius: 24px;
+    padding: 40px;
+    backdrop-filter: blur(40px) saturate(1.5);
+    box-shadow:
+        0 40px 120px rgba(0, 0, 0, 0.7),
+        0 20px 60px rgba(99, 102, 241, 0.2),
+        inset 0 1px 2px rgba(255, 255, 255, 0.1);
+    overflow-y: auto;
+    animation: modal-slide-up 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    margin: 20px;
+}
+
+@keyframes modal-slide-up {
+    from {
+        opacity: 0;
+        transform: translateY(40px) scale(0.95);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+.welcome-modal-main-title {
+    font-size: 36px;
+    color: rgba(255, 255, 255, 0.95);
+    margin: 0 0 10px 0;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    text-shadow: 0 0 20px rgba(99, 102, 241, 0.3);
+}
+
+.welcome-modal-subtitle {
+    font-size: 30px;
+    margin: 0 0 30px 0;
+    color: rgba(255, 255, 255, 0.85);
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 400;
+}
+
+.welcome-modal-body {
+    margin-bottom: 30px;
+}
+
+.welcome-section-title {
+    font-size: 26px;
+    text-align: justify;
+    margin: 20px 0 10px 0;
+    color: rgba(255, 255, 255, 0.95);
+    font-family: 'Montserrat', sans-serif;
+}
+
+.welcome-section-title:first-of-type {
+    margin-top: 0;
+}
+
+.welcome-text {
+    font-size: 22px;
+    text-align: justify;
+    line-height: 1.6;
+    margin: 10px 0;
+    color: rgba(255, 255, 255, 0.8);
+}
+
+.welcome-text a {
+    color: rgba(99, 102, 241, 1);
+    text-decoration: none;
+    transition: color 0.2s;
+}
+
+.welcome-text a:hover {
+    color: rgba(139, 92, 246, 1);
+    text-decoration: underline;
+}
+
+.welcome-button-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 30px;
+}
+
+
+.info-panel-collapsible .welcome-button-container {
+    display: flex;
+    justify-content: flex-start;
+    margin-top: 16px;
+    margin-bottom: 8px;
+}
+
+.welcome-start-btn {
+    padding: 6px 12px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    background: rgba(255, 255, 255, 0.1);
+    color: rgba(255, 255, 255, 0.8);
+    border-radius: 6px;
+    font-size: 12px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.welcome-start-btn:hover {
+    background: rgba(255, 255, 255, 0.15);
+    border-color: rgba(255, 255, 255, 0.3);
+    color: white;
+}
+
+.welcome-confirm-btn {
+    padding: 12px 24px;
+    border: 1px solid rgba(99, 102, 241, 0.3);
+    background: linear-gradient(135deg, rgba(99, 102, 241, 0.8), rgba(139, 92, 246, 0.8));
+    color: white;
+    border-radius: 12px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    font-family: 'Montserrat', sans-serif;
+    box-shadow:
+        0 4px 16px rgba(99, 102, 241, 0.3),
+        0 2px 8px rgba(0, 0, 0, 0.2),
+        inset 0 1px 2px rgba(255, 255, 255, 0.2);
+    position: relative;
+    overflow: hidden;
+}
+
+.welcome-confirm-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: left 0.5s;
+}
+
+.welcome-confirm-btn:hover {
+    background: linear-gradient(135deg, rgba(139, 92, 246, 0.9), rgba(99, 102, 241, 0.9));
+    border-color: rgba(99, 102, 241, 0.6);
+    transform: translateY(-2px);
+    box-shadow:
+        0 8px 24px rgba(99, 102, 241, 0.4),
+        0 4px 12px rgba(0, 0, 0, 0.3),
+        inset 0 1px 2px rgba(255, 255, 255, 0.3);
+}
+
+.welcome-confirm-btn:hover::before {
+    left: 100%;
+}
+
+
+.welcome-modal-content::-webkit-scrollbar {
+    width: 8px;
+}
+
+.welcome-modal-content::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 4px;
+}
+
+.welcome-modal-content::-webkit-scrollbar-thumb {
+    background: rgba(99, 102, 241, 0.5);
+    border-radius: 4px;
+}
+
+.welcome-modal-content::-webkit-scrollbar-thumb:hover {
+    background: rgba(99, 102, 241, 0.7);
+}
+
+
+@media (max-width: 768px) {
+    .welcome-modal-content {
+        max-width: 90vw;
+        max-height: 85vh;
+        padding: 32px 24px;
+        margin: 10px;
+        border-radius: 20px;
+    }
+
+    .welcome-modal-main-title {
+        font-size: 28px;
+    }
+
+    .welcome-modal-subtitle {
+        font-size: 22px;
+    }
+
+    .welcome-section-title {
+        font-size: 20px;
+    }
+
+    .welcome-text {
+        font-size: 18px;
+    }
+
+    .welcome-confirm-btn {
+        padding: 14px 28px;
+        font-size: 16px;
+        border-radius: 10px;
+    }
+}
+
+@media (max-width: 480px) {
+    .welcome-modal-content {
+        max-width: calc(100vw - 20px);
+        max-height: 80vh;
+        padding: 24px 20px;
+        margin: 10px;
+        border-radius: 16px;
+    }
+
+    .welcome-modal-main-title {
+        font-size: 24px;
+    }
+
+    .welcome-modal-subtitle {
+        font-size: 18px;
+    }
+
+    .welcome-section-title {
+        font-size: 18px;
+    }
+
+    .welcome-text {
+        font-size: 16px;
+    }
+
+    .welcome-confirm-btn {
+        padding: 12px 24px;
+        font-size: 15px;
+        border-radius: 8px;
+        width: 100%;
+    }
+
+    .welcome-button-container {
+        margin-top: 24px;
+    }
+}
+

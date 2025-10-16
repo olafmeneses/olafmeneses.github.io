@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LangNet - Exploring language families through numbers 1 to 10</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <div id="container">
+        <div id="loading" class="loading">
+            <div class="loading-wrapper">
+                <div class="loading-animation">
+                    <img src="./LangNet_white.svg" alt="LangNet Logo" class="loading-logo">
+                    <h3 class="loading-title">Exploring language families through numbers 1 to 10</h3>
+                    <h3 class="loading-subtitle">Loading visualization<span class="dots"><span>.</span><span>.</span><span>.</span></span></h3>
+                </div>
+            </div>
+        </div>
+
+        <div id="welcome-modal" class="welcome-modal hidden">
+            <div class="welcome-modal-overlay"></div>
+            <div class="welcome-modal-content">
+                <h2 class="welcome-modal-main-title">LangNet</h2>
+                <h3 class="welcome-modal-subtitle">Exploring language families through numbers 1 to 10</h3>
+                
+                <div class="welcome-modal-body">
+                    <h3 class="welcome-section-title"><b>Welcome!</b></h3>
+                    <p class="welcome-text">This app is the culmination of two previous blog posts, one of which is <a href="https://olafmeneses.com/posts/LangNet/LangFacts" target="_blank">On sorting numbers alphabetically in different languages and other absurdities</a>.</p>
+                    
+                    <h3 class="welcome-section-title"><b>Explanation</b></h3>
+                    <p class="welcome-text">LangNet offers a <strong>3D visualization of language relationships</strong>. Each point represents a language, with edges connecting it to its two nearest languages.<br><br>The distance between languages is calculated as the sum of normalized <a href="https://en.wikipedia.org/wiki/Damerau%E2%80%93Levenshtein_distance" target="_blank">Damerau-Levenshtein</a> distances between the number names of languages from 1 to 10. Despite using only this limited information, the results are quite good. If you're curious, check out the blog post <a href="https://olafmeneses.com/posts/LangNet/LangClust" target="_blank">From number names to language families</a>.</p>
+                    
+                </div>
+                
+                <div class="welcome-button-container">
+                    <button id="welcome-confirm-btn" class="welcome-confirm-btn">Got it!</button>
+                </div>
+            </div>
+        </div>
+
+        <div id="floating-controls-wrapper" class="floating-controls-wrapper">
+            <div class="control-panel-container">
+                <div id="floating-controls" class="floating-control-bar">
+                    <div class="control-group-floating layout-selector">
+                        <label class="floating-label">Layout</label>
+                        <div class="floating-buttons">
+                            <button class="floating-btn active" data-layout="tsne" title="t-SNE Layout">
+                                <svg class="btn-icon" viewBox="0 0 24 24">
+                                    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"/>
+                                    <circle cx="12" cy="12" r="3"/>
+                                </svg>
+                                <span class="btn-label">t-SNE</span>
+                            </button>
+                            <button class="floating-btn" data-layout="mds" title="MDS Layout">
+                                <svg class="btn-icon" viewBox="0 0 24 24">
+                                    <path d="M12 2L2 7v10c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V7l-10-5z"/>
+                                </svg>
+                                <span class="btn-label">MDS</span>
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="control-separator"></div>
+                    
+                    <div class="control-group-floating mode-selector">
+                        <label class="floating-label">Mode</label>
+                        <div class="floating-buttons">
+                            <button class="floating-btn active" data-mode="explore" title="Explore Mode">
+                                <svg class="btn-icon" viewBox="0 0 24 24">
+                                    <path d="M12 10.9c-.61 0-1.1.49-1.1 1.1s.49 1.1 1.1 1.1c.61 0 1.1-.49 1.1-1.1s-.49-1.1-1.1-1.1zM12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm2.19 12.19L6 18l3.81-8.19L18 6l-3.81 8.19z"/>
+                                </svg>
+                                <span class="btn-label">Explore</span>
+                            </button>
+                            <button class="floating-btn" data-mode="game" title="Space Flight Mode">
+                                <svg class="btn-icon" viewBox="0 0 24 24">
+                                    <path d="M2.81 14.12L5.64 11.29 8.17 10.79 11.99 6.96 13.53 5.42 13.53 2.83 12.45 1.74 14.87 2.83 15.96 5.26 15.42 6.8 21.96 13.34 23.05 15.76 20.46 15.76 17.92 15.22 15.19 12.5 11.99 15.7 12.54 18.24 15.36 21.07 14.27 22.16 11.85 20.07 10.14 19.58 8.43 18.1 7.58 16.39 6.09 14.68 2.81 14.12M5.64 16.41L7.58 18.35 9.19 16.74 5.64 16.41M4.83 13.82L7.89 14.15 6.28 15.76 4.83 13.82M18.05 10.42L18.35 8.48 20.3 10.42 18.05 10.42Z"/>
+                                </svg>
+                                <span class="btn-label">Flight</span>
+                            </button>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="control-tabs-row">
+                    <button id="info-btn" class="control-tab-btn" title="Toggle Information Panel" aria-label="Toggle information panel" aria-expanded="false">
+                        <svg class="tab-icon" viewBox="0 0 24 24">
+                            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/>
+                        </svg>
+                        <span class="tab-label">Info</span>
+                    </button>
+                </div>
+            </div>
+
+            <div id="info-panel-collapsible" class="info-panel-collapsible hidden">
+                <div class="info-panel-content">
+                    <div class="info-section">
+                        <h3>Welcome to LangNet</h3>
+                        <p>Explore over 3600 languages plotted by their number names (1-10). Discover linguistic relationships, family connections, and patterns across the world's languages.</p>
+                        <div class="welcome-button-container">
+                            <button id="welcome-start-btn" class="welcome-start-btn">Do you want to know more about LangNet?</button>
+                        </div>
+                    </div>
+                    <div class="info-section">
+                        <h3>How to Navigate</h3>
+                        <ul>
+                            <li><strong>Colors:</strong> Represent language macrofamilies.</li>
+                            <li><strong>Connections:</strong> Link languages with similar number names.</li>
+                            <li><strong>Hover:</strong> Reveals language and family details.</li>
+                            <li><strong>Click:</strong> Disover the number names in the language and its nearest language.</li>
+                            <li><strong>Search:</strong> Use the search bar at the top to find languages or families.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="ui-overlay top-left-info">
+            <div id="language-info" class="language-info hidden">
+                <h2 id="hover-title">Hover for language & family info</h2>
+                <div id="language-details"></div>
+            </div>
+        </div>
+
+
+        <div id="global-search" class="enhanced-search hidden" role="combobox" aria-haspopup="listbox" aria-owns="global-search-results" aria-expanded="false">
+            <div class="search-container">
+                <div class="search-input-group">
+                    <svg class="search-icon" viewBox="0 0 24 24" aria-hidden="true">
+                        <path d="M15.5 14h-.79l-.28-.27a6.5 6.5 0 1 0-.71.71l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0a4.5 4.5 0 1 1 0-9 4.5 4.5 0 0 1 0 9z"/>
+                    </svg>
+                    <input type="search" id="global-search-input" placeholder="Discover languages and families..." autocomplete="off" aria-label="Search languages or families">
+                    <button id="global-search-clear" class="search-clear-button hidden" aria-label="Clear search">
+                        <svg viewBox="0 0 24 24" aria-hidden="true">
+                            <path d="M12 10.586 6.707 5.293 5.293 6.707 10.586 12l-5.293 5.293 1.414 1.414L12 13.414l5.293 5.293 1.414-1.414L13.414 12l5.293-5.293-1.414-1.414z"/>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+            <div id="global-search-results" class="search-dropdown hidden" role="listbox"></div>
+        </div>
+
+        <div class="ui-overlay bottom-right-credit">
+            <div class="creator-credit">
+                <svg class="creator-icon" viewBox="0 0 24 24">
+                    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.94-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/>
+                </svg>
+                <div class="credit-content">
+                    <span class="credit-label">Created by</span>
+                    <a href="https://olafmeneses.com/" class="credit-link">Olaf Meneses</a>
+                </div>
+            </div>
+        </div>
+
+        <div id="discovery-notification" class="discovery-notification hidden">
+            <div class="discovery-content">
+                <h3>🌍 Language Discovered!</h3>
+                <p id="discovery-text"></p>
+            </div>
+        </div>
+
+        <div id="language-modal" class="language-modal hidden">
+            <div class="language-modal-overlay"></div>
+            <div class="language-modal-content">
+                <button class="language-modal-close" aria-label="Close modal">&times;</button>
+                <div id="language-modal-body"></div>
+            </div>
+        </div>
+
+        <div id="language-hunt-completion-modal" class="language-hunt-completion-modal hidden">
+            <div class="completion-modal-overlay"></div>
+            <div class="completion-modal-content">
+                <div class="completion-header">
+                    <div class="completion-icon">🎉</div>
+                    <h2 class="completion-title">Mission Accomplished!</h2>
+                    <p class="completion-subtitle">You've discovered all the hidden languages!</p>
+                </div>
+                
+                <div class="completion-stats">
+                    <div class="stat-item">
+                        <div class="stat-value" id="completion-time">0:00</div>
+                        <div class="stat-label">Completion Time</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-value" id="completion-languages">10</div>
+                        <div class="stat-label">Languages Found</div>
+                    </div>
+                </div>
+                
+                <div class="completion-actions">
+                    <button id="restart-language-hunt" class="completion-btn primary">
+                        <svg viewBox="0 0 24 24" class="btn-icon">
+                            <path d="M17.65 6.35C16.2 4.9 14.21 4 12 4c-4.42 0-7.99 3.58-7.99 8s3.57 8 7.99 8c3.73 0 6.84-2.55 7.73-6h-2.08c-.82 2.33-3.04 4-5.65 4-3.31 0-6-2.69-6-6s2.69-6 6-6c1.66 0 3.14.69 4.22 1.78L13 11h7V4l-2.35 2.35z"/>
+                        </svg>
+                        Play Again
+                    </button>
+                    <button id="exit-language-hunt" class="completion-btn secondary">
+                        <svg viewBox="0 0 24 24" class="btn-icon">
+                            <path d="M19 7v4H5.83l3.58-3.59L8 6l-6 6 6 6 1.41-1.41L5.83 13H21V7z"/>
+                        </svg>
+                        Exit Game
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/lib/three.min_r140.js"></script>
+    <script src="js/lib/OrbitControls.js"></script>
+    <script src="js/lib/GLTFLoader.js"></script>
+    <script src="js/lib/stats.min.js"></script>
+    <script src="js/lib/tween_18.js"></script>
+    <script type="module" src="js/langnet.js"></script>
+</body>
+</html>
