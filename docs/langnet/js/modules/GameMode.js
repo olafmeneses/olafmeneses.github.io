@@ -805,10 +805,10 @@ export class GameMode {
     }
 
     addLighting() {
-        const ambient = new THREE.AmbientLight(0x202030, 0.4);
+        const ambient = new THREE.AmbientLight(0xffffff, 0.1);
         this.app.threeSetup.scene.add(ambient); this.gameLights.push(ambient);
-        const key = new THREE.DirectionalLight(0xffffff, 1.1); key.position.set(30, 40, 20); this.app.threeSetup.scene.add(key); this.gameLights.push(key);
-        const rim = new THREE.DirectionalLight(0x6699ff, 0.6); rim.position.set(-25, 15, -35); this.app.threeSetup.scene.add(rim); this.gameLights.push(rim);
+        const key = new THREE.DirectionalLight(0xfc0318, 1); key.position.set(30, 40, 20); this.app.threeSetup.scene.add(key); this.gameLights.push(key);
+        const rim = new THREE.DirectionalLight(0x1100fc, 1.7); rim.position.set(-25, 15, -35); this.app.threeSetup.scene.add(rim); this.gameLights.push(rim);
     }
 
     checkPlanetDiscovery() {

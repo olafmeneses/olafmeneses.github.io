@@ -11,7 +11,7 @@ export class LanguageHunt {
         this.gameStartTime = null;
         this.lastDimmingUpdate = 0;
         this.dimmingProgress = 0;
-        this.maxDimmingTime = 1000;
+        this.maxDimmingTime = 14000;
         this.discoveryRadius = 8;
         this.lastDiscoveredLanguage = null;
         this.aureolaRings = new Map();

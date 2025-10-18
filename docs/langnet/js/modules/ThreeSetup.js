@@ -76,12 +76,8 @@ export class ThreeSetup {
         this.raycaster = new THREE.Raycaster();
         this.mouse = new THREE.Vector2();
         
-        const ambientLight = new THREE.AmbientLight(0x404040, 0.8);
+        const ambientLight = new THREE.AmbientLight(0xffffff, 1.0);
         this.scene.add(ambientLight);
-        
-        const directionalLight = new THREE.DirectionalLight(0xffffff, 0.6);
-        directionalLight.position.set(1, 1, 1).normalize();
-        this.scene.add(directionalLight);
         
         this.initStats();
     }
