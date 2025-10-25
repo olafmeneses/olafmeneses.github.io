@@ -30,17 +30,22 @@ function init()
   renderer.setClearColor( new THREE.Color(0xFFFFFF) );
   document.getElementById('container').appendChild( renderer.domElement );
 
+  // sombras
+  // 1- habiltar sombras en el renderizador
+  renderer.shadowMap.enabled = true;
+  renderer.shadowMap.type = THREE.PCFSoftShadowMap;  // Usar PCFSoftShadowMap para suavizar las sombras
+
   scene = new THREE.Scene();
 
   var aspectRatio = window.innerWidth / window.innerHeight;
-  camera = new THREE.PerspectiveCamera( 50, aspectRatio , 0.1, 1000 );
+  camera = new THREE.PerspectiveCamera( 50, aspectRatio , 0.1, 2000 );
   camera.position.set( 250, 400, 500 );
 
   cameraControls = new THREE.OrbitControls( camera, renderer.domElement );
   cameraControls.target.set( 0, 0, 0 );
 
   // Cámara cenital (miniatura),cuadrada, mirada desde arriba
-  cameraTop = new THREE.PerspectiveCamera( 50, 1, 0.1, 1000 );
+  cameraTop = new THREE.PerspectiveCamera( 50, 1, 0.1, 2000 );
   cameraTop.position.set( 0, 400, 0 );
   cameraTop.lookAt( 0, 0, 0 );
 
@@ -58,62 +63,153 @@ function init()
   gui.add(controls, 'anima').name('Anima');
 
   window.addEventListener('resize', updateAspectRatio );
+
 }
 
 
 function loadScene()
 {
-	// Añade el objeto grafico a la escena
-  let material = new THREE.MeshNormalMaterial();
+  // Añadir luz ambiental
+  var luzAmbiente = new THREE.AmbientLight(0x505050); // luz tenue
+  scene.add(luzAmbiente);
+
+  // Añadir luz direccional
+  var luzDireccional = new THREE.DirectionalLight(0xffffff, 0.2);
+  luzDireccional.position.set(0, 1, 0);
+  scene.add(luzDireccional);
+
+  // Añadir luz de foco (spotlight)
+  var luzFocal = new THREE.SpotLight(0xffffff, 0.6);
+  luzFocal.position.set(250, 500, 250);
+  luzFocal.target.position.set(0, 0, 0);
+  luzFocal.angle = Math.PI / 6;
+  luzFocal.penumbra = 1;
+
+  // Configurar sombras para la luz focal
+  luzFocal.castShadow = true;
+  luzFocal.shadow.camera.near = 100;
+  luzFocal.shadow.camera.far = 2500;
+  luzFocal.shadow.mapSize.width = 1024;  // Tamaño del mapa de sombras en ancho
+  luzFocal.shadow.mapSize.height = 1024; // Tamaño del mapa de sombras en alto
+
+  scene.add(luzFocal);
+
+  // Añadir luz de foco (spotlight)
+  var luzFocal2 = new THREE.SpotLight(0xffffff, 0.6);
+  luzFocal2.position.set(0, 250, 250);
+  luzFocal2.target.position.set(0, 0, 0);
+  luzFocal2.angle = Math.PI / 4;
+  luzFocal2.penumbra = 1;
+
+  // Configurar sombras para la luz focal
+  luzFocal2.castShadow = true;
+  luzFocal2.shadow.camera.near = 100;
+  luzFocal2.shadow.camera.far = 2500;
+  luzFocal2.shadow.mapSize.width = 1024;  // Tamaño del mapa de sombras en ancho
+  luzFocal2.shadow.mapSize.height = 1024; // Tamaño del mapa de sombras en alto
+
+  scene.add(luzFocal2);
+
+  // Cargar texturas
+  var textureLoader = new THREE.TextureLoader();
+  var texturaSuelo = textureLoader.load('./images/pisometalico_1024.jpg');
+  var texturaMetal = textureLoader.load('./images/metal_128.jpg');
+  var texturaMadera = textureLoader.load('./images/wood512.jpg');
+
+  // Crear el loader para el cubemap
+  const cubeTextureLoader = new THREE.CubeTextureLoader();
+  cubemap = cubeTextureLoader.load([
+      './images/posx.jpg',
+      './images/negx.jpg',
+      './images/posy.jpg',
+      './images/negy.jpg',
+      './images/posz.jpg',
+      './images/negz.jpg'
+  ], 
+      function (texture) {
+          console.log('Cubemap cargado correctamente.');
+      }, 
+      undefined, 
+      function (error) {
+          console.error('Error al cargar el cubemap', error);
+      }
+  );
+
+  // Crear materiales
+  var materialSuelo = new THREE.MeshPhongMaterial({ map: texturaSuelo });
+  var materialMetal = new THREE.MeshPhongMaterial({ map: texturaMetal});
+  var materialMadera = new THREE.MeshLambertMaterial({ map: texturaMadera});
+  var materialRotula = new THREE.MeshPhongMaterial({
+    envMap: cubemap,
+  });
+  var materialPinza = new THREE.MeshLambertMaterial({ color: 0x0ffff0});
 
   robot = new THREE.Object3D();
 
   base = new THREE.Mesh(
     new THREE.CylinderGeometry(50,50,15,64),
-    material
+    materialMetal
   );
+  base.castShadow = true;
+  base.receiveShadow = true;
 
   brazo = new THREE.Object3D();
 
   eje = new THREE.Mesh(
     new THREE.CylinderGeometry(20,20,18,32),
-    material
+    materialMetal
   );
   eje.rotateOnAxis(new THREE.Vector3(1,0,0), -Math.PI/2);
+  eje.castShadow = true;
+  eje.receiveShadow = true;
 
   esparrago = new THREE.Mesh(
     new THREE.CylinderGeometry(18,12,120,32),
-    material
+    materialMadera
   );
+  esparrago.castShadow = true;
+  esparrago.receiveShadow = true;
 
   rotula = new THREE.Mesh(
     new THREE.SphereGeometry(20,32,32),
-    material
+    materialRotula
   );
+  rotula.castShadow = true;
+  rotula.receiveShadow = true;
 
   antebrazo = new THREE.Object3D();
 
   let disco = new THREE.Mesh(
     new THREE.CylinderGeometry(22,22,6,32),
-    material
+    materialMetal
   );
+  disco.castShadow = true;
+  disco.receiveShadow = true;
 
   let nervio1 = new THREE.Mesh(
     new THREE.CylinderGeometry(4,4,80,32),
-    material
+    materialMetal
   );
+  nervio1.castShadow = true;
+  nervio1.receiveShadow = true;
   let nervio2 = new THREE.Mesh(
     new THREE.CylinderGeometry(4,4,80,32),
-    material
+    materialMetal
   );
+  nervio2.castShadow = true;
+  nervio2.receiveShadow = true;
   let nervio3 = new THREE.Mesh(
     new THREE.CylinderGeometry(4,4,80,32),
-    material
+    materialMetal
   );
+  nervio3.castShadow = true;
+  nervio3.receiveShadow = true;
   let nervio4 = new THREE.Mesh(
     new THREE.CylinderGeometry(4,4,80,32),
-    material
+    materialMetal
   );
+  nervio4.castShadow = true;
+  nervio4.receiveShadow = true;
 
   nervio1.position.set(8, 40, 8);
   nervio2.position.set(-8, 40, 8);
@@ -122,11 +218,13 @@ function loadScene()
 
   mano = new THREE.Mesh(
     new THREE.CylinderGeometry(15,15,40,32),
-    material
+    materialMetal
   );
   mano.position.y = 80;
   mano.rotateOnAxis(new THREE.Vector3(1,0,0), -Math.PI/2);
   mano.rotateOnAxis(new THREE.Vector3(0,1,0), Math.PI/2);
+  mano.castShadow = true;
+  mano.receiveShadow = true;
 
   pinzalz = new THREE.Object3D();
   pinzaDe = new THREE.Object3D();
@@ -162,27 +260,35 @@ function loadScene()
   // Pinza Izquierda
   let baseIzq = new THREE.Mesh(
     new THREE.BoxGeometry(20, 4, 19),
-    material
+    materialPinza
   );
+  baseIzq.castShadow = true;
+  baseIzq.receiveShadow = true;
   
   baseIzq.position.z = 19/2;
   let dedoIzq = new THREE.Mesh(
     geometria_dedo,
-    material
+    materialPinza
   );
+  dedoIzq.castShadow = true;
+  dedoIzq.receiveShadow = true;
   pinzalz.add(baseIzq);
   pinzalz.add(dedoIzq);
 
   // Pinza Derecha
   let baseDer = new THREE.Mesh(
     new THREE.BoxGeometry(20, 4, 19),
-    material
+    materialPinza
   );
+  baseDer.castShadow = true;
+  baseDer.receiveShadow = true;
   baseDer.position.z = 19/2;
   let dedoDer = new THREE.Mesh(
     geometria_dedo,
-    material
+    materialPinza
   );
+  dedoDer.castShadow = true;
+  dedoDer.receiveShadow = true;
   pinzaDe.add(baseDer);
   pinzaDe.add(dedoDer);
 
@@ -215,10 +321,25 @@ function loadScene()
 
   // suelo
   let geometriaPiso = new THREE.PlaneGeometry(1000, 1000, 10, 10);
-  let piso = new THREE.Mesh(geometriaPiso, new THREE.MeshBasicMaterial({ color: 0xAAAAAA }));
+  let piso = new THREE.Mesh(geometriaPiso, materialSuelo);
   piso.rotateOnAxis(new THREE.Vector3(1, 0, 0), -Math.PI/2);
+  piso.receiveShadow = true;
+  // Crear un skybox: un gran cubo invertido
+  // Cargar las seis texturas individualmente para el skybox
+  const materialesHabitacion = [
+    new THREE.MeshBasicMaterial({ map: textureLoader.load('./images/posx.jpg'), side: THREE.BackSide }),
+    new THREE.MeshBasicMaterial({ map: textureLoader.load('./images/negx.jpg'), side: THREE.BackSide }),
+    new THREE.MeshBasicMaterial({ map: textureLoader.load('./images/posy.jpg'), side: THREE.BackSide }),
+    new THREE.MeshBasicMaterial({ map: textureLoader.load('./images/negy.jpg'), side: THREE.BackSide }),
+    new THREE.MeshBasicMaterial({ map: textureLoader.load('./images/posz.jpg'), side: THREE.BackSide }),
+    new THREE.MeshBasicMaterial({ map: textureLoader.load('./images/negz.jpg'), side: THREE.BackSide })
+  ];
+
+  const habitacionGeometry = new THREE.BoxGeometry(1000, 1000, 1000);
+  const habitacion = new THREE.Mesh(habitacionGeometry, materialesHabitacion);
 
   // escena
+  scene.add(habitacion);
   scene.add(robot);
   scene.add(piso);
 }
@@ -241,27 +362,24 @@ function update()
   cameraControls.update();
 
   // Aplicar transformaciones desde gui al robot
-  if (base) base.rotation.y = THREE.MathUtils.degToRad(controls.giroBase);
-  if (eje) eje.rotation.z = THREE.MathUtils.degToRad(controls.giroEjeZ);
-  if (rotula) {
-    antebrazo.rotation.y = THREE.MathUtils.degToRad(controls.giroAntebrazoY);
-    antebrazo.rotation.z = THREE.MathUtils.degToRad(controls.giroAntebrazoZ);
-  }
-  if (mano) mano.rotation.z = THREE.MathUtils.degToRad(controls.rotPinzaZ);
+  base.rotation.y = THREE.MathUtils.degToRad(controls.giroBase);
+  
+  brazo.rotation.z = THREE.MathUtils.degToRad(controls.giroEjeZ);
+  
+  antebrazo.rotation.y = THREE.MathUtils.degToRad(controls.giroAntebrazoY);
+  
+  antebrazo.rotation.z = THREE.MathUtils.degToRad(controls.giroAntebrazoZ);
+  
+  mano.rotation.y = THREE.MathUtils.degToRad(-controls.rotPinzaZ + 90);
 
   // Separacion de pinzas (mover objetos pinzalz y pinzaDe en Y)
-  if (pinzalz && pinzaDe) {
-    pinzalz.position.y = 3 + controls.separacionPinza;
-    pinzaDe.position.y = -3 - controls.separacionPinza;
-  }
+  pinzalz.position.y = 3 + controls.separacionPinza;
+  pinzaDe.position.y = -3 - controls.separacionPinza;
 
   // Actualizar alambres
   robot.traverse(function(node){
-    if (controls.alambres) {
-      node.material.wireframe = true;
-    }
-    else {
-      node.material = new THREE.MeshNormalMaterial();
+    if (node.material) {
+      node.material.wireframe = controls.alambres;
     }
   });
 
