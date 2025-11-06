@@ -13,6 +13,7 @@ export class ThreeSetup {
         this.stats = null;
         this.onZoomChange = null;
         this.onAnimate = null;
+        this.onFrustumUpdate = null;
         this._lastTime = null;
         this.isGameMode = false;
     }
@@ -99,6 +100,10 @@ export class ThreeSetup {
 
     animate = (time) => {
         requestAnimationFrame(this.animate);
+        const renderer_info = window.langNetApp.threeSetup.renderer.info.render;
+        if (renderer_info.frame % 50 === 0) {
+            console.log(renderer_info);
+        }
         
         // Calculate delta time in secs
         if (this._lastTime === null) {
@@ -133,6 +138,11 @@ export class ThreeSetup {
         
         if (this.controls && this.controls.enabled) {
             this.controls.update();
+        }
+
+        // actualizar frustum culling
+        if (this.onFrustumUpdate) {
+            this.onFrustumUpdate();
         }
         
         if (this.renderer && this.scene && this.camera) {

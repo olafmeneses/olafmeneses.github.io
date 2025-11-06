@@ -1,4 +1,5 @@
 import { CONFIG } from './Config.js';
+import { FrustumCulling } from './FrustumCulling.js';
 
 export class Visualization {
     constructor(scene) {
@@ -14,6 +15,14 @@ export class Visualization {
         this.currentLayout = 'tsne';
         this.isGameMode = false;
         
+        this.frustumCulling = new FrustumCulling();
+        this.clusterBoundingSpheres = new Map();
+        this.camera = null;
+        
+        // lod dinámico
+        this.currentLODGeometries = new Map();
+        this.geometryCache = new Map();
+        
         this.isAnimating = false;
         this.animationDuration = 1000;
         this.animationsEnabled = true;
@@ -26,6 +35,99 @@ export class Visualization {
         this.tempPosition = new THREE.Vector3();
         this.tempQuaternion = new THREE.Quaternion();
         this.tempScale = new THREE.Vector3();
+    }
+
+    setCamera(camera) {
+        this.camera = camera;
+    }
+
+    // calcula segmentos apropiados según distancia
+    approxSegments(dist) {
+        if (dist <= 175) {
+            return 20;
+        } else {
+            return Math.max(Math.round(362 - 292 * Math.pow(dist, 0.031)), 1);
+        }
+    }
+
+    // obtiene o crea geometría con número específico de segmentos
+    getGeometry(segments) {
+        if (!this.geometryCache.has(segments)) {
+            const geo = new THREE.SphereGeometry(0.8, segments, segments);
+            geo.computeBoundingSphere();
+            geo.computeBoundingBox();
+            this.geometryCache.set(segments, geo);
+        }
+        return this.geometryCache.get(segments);
+    }
+
+    // calcula distancia promedio de un cluster a la cámara
+    calculateClusterDistance(nodeGroup, currentLayout) {
+        if (!this.camera) return Infinity;
+
+        const { languages } = nodeGroup;
+        let totalDistance = 0;
+        let count = 0;
+
+        const cameraPos = this.camera.position;
+
+        for (const langData of languages) {
+            const pos = currentLayout[langData.index];
+            if (pos) {
+                const dx = pos.x - cameraPos.x;
+                const dy = pos.y - cameraPos.y;
+                const dz = pos.z - cameraPos.z;
+                totalDistance += Math.sqrt(dx * dx + dy * dy + dz * dz);
+                count++;
+            }
+        }
+
+        return count > 0 ? totalDistance / count : Infinity;
+    }
+
+    // actualiza lod de todos los clusters
+    updateLOD() {
+        if (!this.camera || this.isGameMode || this.isAnimating) {
+            return;
+        }
+
+        const layout = this.layouts[this.currentLayout];
+        if (!layout) return;
+
+        this.instancedNodes.forEach((nodeGroup, color) => {
+            const distance = this.calculateClusterDistance(nodeGroup, layout);
+            const segments = this.approxSegments(distance);
+
+            const currentSegments = this.currentLODGeometries.get(color);
+            
+            // solo cambiar geometría si es diferente
+            if (currentSegments !== segments) {
+                const newGeometry = this.getGeometry(segments);
+                nodeGroup.mesh.geometry = newGeometry;
+                this.currentLODGeometries.set(color, segments);
+            }
+        });
+    }
+
+    updateFrustumCulling() {
+        if (!this.camera || this.isGameMode || this.isAnimating) {
+            return;
+        }
+
+        // actualizar lod
+        this.updateLOD();
+
+        if (CONFIG.PERFORMANCE.ENABLE_FRUSTUM_CULLING) {
+            this.frustumCulling.updateFrustum(this.camera);
+
+            this.instancedNodes.forEach((nodeGroup, color) => {
+                const boundingSphere = this.clusterBoundingSpheres.get(color);
+                if (boundingSphere) {
+                    const isVisible = this.frustumCulling.isClusterVisible(boundingSphere);
+                    nodeGroup.mesh.visible = isVisible;
+                }
+            });
+        }
     }
     
     setInstanceMatrix(mesh, instanceIndex, position, scale = 1) {
@@ -179,6 +281,13 @@ export class Visualization {
         if (!layout) {
             return;
         }
+
+        // recalcular bounding spheres de clusters
+        this.clusterBoundingSpheres = this.frustumCulling.calculateClusterBoundingSpheres(
+            this.instancedNodes,
+            this.languageData,
+            layout
+        );
         
         this.instancedNodes.forEach((nodeGroup, color) => {
             const { mesh, languages } = nodeGroup;

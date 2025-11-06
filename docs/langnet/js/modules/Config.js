@@ -10,7 +10,8 @@ export const CONFIG = {
     PERFORMANCE: {
         SPHERE_SEGMENTS: 6,
         SPHERE_SEGMENTS_SMOOTH: 24,
-        PIXEL_RATIO_LIMIT: 1.5
+        PIXEL_RATIO_LIMIT: 1.5,
+        ENABLE_FRUSTUM_CULLING: true
     },
     CAMERA: {
         FOV: 75,

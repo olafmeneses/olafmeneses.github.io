@@ -84,6 +84,7 @@ class LangNetApp {
                 this.dataLoader.layouts
             );
             
+            this.visualization.setCamera(this.threeSetup.camera);
             this.visualization.getColorForLanguage = (lang) => this.getColorForLanguage(lang);
             
             this.updateLoadingProgress(3);
@@ -189,6 +190,10 @@ class LangNetApp {
         
         this.threeSetup.onZoomChange = () => {
             this.events.updateEdgeOpacityBasedOnZoom();
+        };
+
+        this.threeSetup.onFrustumUpdate = () => {
+            this.visualization.updateFrustumCulling();
         };
         
         this.events.updateEdgeOpacityBasedOnZoom();
