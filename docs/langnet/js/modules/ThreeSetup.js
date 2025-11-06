@@ -100,10 +100,6 @@ export class ThreeSetup {
 
     animate = (time) => {
         requestAnimationFrame(this.animate);
-        const renderer_info = window.langNetApp.threeSetup.renderer.info.render;
-        if (renderer_info.frame % 50 === 0) {
-            console.log(renderer_info);
-        }
         
         // Calculate delta time in secs
         if (this._lastTime === null) {

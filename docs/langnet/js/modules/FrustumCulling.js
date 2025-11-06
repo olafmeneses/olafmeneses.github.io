@@ -5,6 +5,7 @@ export class FrustumCulling {
         this.frustum = new THREE.Frustum();
         this.projScreenMatrix = new THREE.Matrix4();
         this.boundingSphere = new THREE.Sphere();
+        this.tempVector = new THREE.Vector3();
     }
 
     updateFrustum(camera) {
@@ -42,7 +43,7 @@ export class FrustumCulling {
 
         // agregar margen de seguridad (tamaño de esfera + margen)
         maxRadius += 1.5;
-
+        
         return new THREE.Sphere(center, maxRadius);
     }
 
@@ -54,8 +55,17 @@ export class FrustumCulling {
         return this.frustum.intersectsSphere(clusterBoundingSphere);
     }
 
+    // verifica si un punto individual es visible
+    isPointVisible(position) {
+        if (!position) {
+            return false;
+        }
+        this.tempVector.set(position.x, position.y, position.z);
+        return this.frustum.containsPoint(this.tempVector);
+    }
+
     // calcula bounding spheres para cada grupo de color
-    calculateClusterBoundingSpheres(instancedNodes, languageData, currentLayout) {
+    calculateClusterBoundingSpheres(instancedNodes, currentLayout) {
         const clusterBounds = new Map();
 
         instancedNodes.forEach((nodeGroup, color) => {

@@ -9,6 +9,7 @@ export class Visualization {
         this.instancedNodes = new Map();
         this.instancedEdges = null;
         this.nodeInstanceData = [];
+        this.nodeInstanceLookup = new Map();
         this.languageData = [];
         this.edges = [];
         this.layouts = {};
@@ -117,17 +118,67 @@ export class Visualization {
         // actualizar lod
         this.updateLOD();
 
-        if (CONFIG.PERFORMANCE.ENABLE_FRUSTUM_CULLING) {
-            this.frustumCulling.updateFrustum(this.camera);
-
-            this.instancedNodes.forEach((nodeGroup, color) => {
-                const boundingSphere = this.clusterBoundingSpheres.get(color);
-                if (boundingSphere) {
-                    const isVisible = this.frustumCulling.isClusterVisible(boundingSphere);
-                    nodeGroup.mesh.visible = isVisible;
-                }
-            });
+        if (!CONFIG.PERFORMANCE.ENABLE_FRUSTUM_CULLING) {
+            return;
         }
+
+        const layout = this.layouts[this.currentLayout];
+        if (!layout) {
+            return;
+        }
+
+        if (!this.clusterBoundingSpheres || this.clusterBoundingSpheres.size === 0) {
+            this.clusterBoundingSpheres = this.frustumCulling.calculateClusterBoundingSpheres(
+                this.instancedNodes,
+                layout
+            );
+        }
+
+        this.frustumCulling.updateFrustum(this.camera);
+
+        this.instancedNodes.forEach((nodeGroup, color) => {
+            const { mesh, languages } = nodeGroup;
+            const boundingSphere = this.clusterBoundingSpheres.get(color);
+
+            // si el cluster completo está fuera, evitamos iterar instancias
+            if (boundingSphere && !this.frustumCulling.isClusterVisible(boundingSphere)) {
+                mesh.visible = false;
+                return;
+            }
+
+            mesh.visible = true;
+
+            let visibleInstances = 0;
+
+            for (let index = 0; index < mesh.count && index < languages.length; index++) {
+                const langData = languages[index];
+
+                if (!langData) {
+                    this.hideInstance(mesh, index);
+                    continue;
+                }
+
+                const positionData = layout[langData.index];
+
+                if (!positionData) {
+                    this.hideInstance(mesh, index);
+                    continue;
+                }
+
+                if (this.frustumCulling.isPointVisible(positionData)) {
+                    this.tempPosition.set(positionData.x, positionData.y, positionData.z);
+                    const instanceData = this.nodeInstanceLookup.get(langData.index);
+                    const scale = instanceData ? instanceData.currentScale : 1;
+                    this.setInstanceMatrix(mesh, index, this.tempPosition, scale);
+                    visibleInstances++;
+                } else {
+                    this.hideInstance(mesh, index);
+                }
+            }
+
+            mesh.instanceMatrix.needsUpdate = true;
+            mesh.visible = visibleInstances > 0;
+        });
     }
     
     setInstanceMatrix(mesh, instanceIndex, position, scale = 1) {
@@ -158,6 +209,7 @@ export class Visualization {
     createNodes() {
         this.nodeObjects = [];
         this.nodeInstanceData = [];
+        this.nodeInstanceLookup.clear();
 
         this.instancedNodes.forEach(instancedMesh => {
             this.scene.remove(instancedMesh);
@@ -204,13 +256,16 @@ export class Visualization {
 
                 instancedMesh.setColorAt(instanceIndex, new THREE.Color(color));
 
-                this.nodeInstanceData.push({
+                const instanceInfo = {
                     languageIndex: langData.index,
                     instancedMesh: instancedMesh,
                     instanceIndex: instanceIndex,
                     color: color,
                     currentScale: 1
-                });
+                };
+
+                this.nodeInstanceData.push(instanceInfo);
+                this.nodeInstanceLookup.set(langData.index, instanceInfo);
             });
 
             instancedMesh.instanceMatrix.needsUpdate = true;
@@ -285,7 +340,6 @@ export class Visualization {
         // recalcular bounding spheres de clusters
         this.clusterBoundingSpheres = this.frustumCulling.calculateClusterBoundingSpheres(
             this.instancedNodes,
-            this.languageData,
             layout
         );
         
@@ -302,7 +356,7 @@ export class Visualization {
                     if (positionData) {
                         this.tempPosition.set(positionData.x, positionData.y, positionData.z);
                         
-                        const instanceData = this.nodeInstanceData.find(data => data.languageIndex === langData.index);
+                        const instanceData = this.nodeInstanceLookup.get(langData.index);
                         const scale = instanceData ? instanceData.currentScale : 1;
                         
                         this.setInstanceMatrix(mesh, i, this.tempPosition, scale);
@@ -316,7 +370,6 @@ export class Visualization {
                     hiddenCount++;
                 }
             }
-            
             mesh.instanceMatrix.needsUpdate = true;
         });
         
@@ -531,7 +584,7 @@ export class Visualization {
                 const fromPos = fromPositions[langData.index];
                 const toPos = toPositions[langData.index];
                 
-                const instanceData = this.nodeInstanceData.find(data => data.languageIndex === langData.index);
+                const instanceData = this.nodeInstanceLookup.get(langData.index);
                 const scale = instanceData ? instanceData.currentScale : 1;
                 animData.scales[index] = scale;
                 
