@@ -10,17 +10,18 @@
 <atom:link href="https://olafmeneses.com/blog/index.xml" rel="self" type="application/rss+xml"/>
 <description>Projects &amp; thoughts</description>
 <image>
-<url>https://olafmeneses.com/images/profile/profile.png</url>
+<url>https://olafmeneses.com/images/profile/profile.webp</url>
 <title>Olaf Meneses</title>
 <link>https://olafmeneses.com/blog/</link>
 </image>
-<generator>quarto-1.4.551</generator>
+<generator>quarto-1.7.33</generator>
 <lastBuildDate>Sun, 31 Mar 2024 22:00:00 GMT</lastBuildDate>
 <item>
   <title>From number names to language families</title>
   <dc:creator>Olaf Meneses</dc:creator>
   <link>https://olafmeneses.com/posts/LangNet/LangClust/</link>
   <description><![CDATA[ 
+
 
 
 
@@ -69,7 +70,7 @@
 <p>After the initial failure, I tried with a well-known distance for strings: <a href="https://en.wikipedia.org/wiki/Levenshtein_distance">Levenshtein distance</a>.</p>
 <p>The Levenshtein distance counts the minimum number of single-character edits (insertions, deletions, or substitutions) needed to change one string into the other. So, the smaller the Levenshtein distance between two strings, the more similar they are.</p>
 <p>We will now see an example of why we should make some modifications to define a new distance. If you have the strings “hello” and “hello”, the Levenshtein distance is 0. That makes sense. But here’s the problem:</p>
-<table class="table">
+<table class="caption-top table">
 <colgroup>
 <col style="width: 33%">
 <col style="width: 33%">
@@ -97,7 +98,7 @@
 </table>
 <p>Although both have the same Levenshtein distance of 5, would you say that both strings are at the same distance (equally similar/dissimilar)? We can address this by normalizing the distance.</p>
 <p>To do this, we divide the distance calculated by the maximum length of the strings s1 and s2 being compared (<img src="https://latex.codecogs.com/png.latex?max(length(%5Ctext%7Bs1%7D),%5C,length(%5Ctext%7Bs1%7D))">, where length is the number of characters of each string). The minimum distance is 0, while the maximum distance is set at 1:</p>
-<table class="table">
+<table class="caption-top table">
 <colgroup>
 <col style="width: 26%">
 <col style="width: 26%">

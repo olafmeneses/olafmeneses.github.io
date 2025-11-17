@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss  xmlns:atom="http://www.w3.org/2005/Atom" 
+      xmlns:media="http://search.yahoo.com/mrss/" 
+      xmlns:content="http://purl.org/rss/1.0/modules/content/" 
+      xmlns:dc="http://purl.org/dc/elements/1.1/" 
+      version="2.0">
+<channel>
+<title>Olaf Meneses</title>
+<link>https://olafmeneses.com/projects/#category=R</link>
+<atom:link href="https://olafmeneses.com/projects/index-r.xml" rel="self" type="application/rss+xml"/>
+<description>Projects &amp; thoughts</description>
+<image>
+<url>https://olafmeneses.com/images/profile/profile.png</url>
+<title>Olaf Meneses</title>
+<link>https://olafmeneses.com/projects/#category=R</link>
+</image>
+<generator>quarto-1.7.33</generator>
+<lastBuildDate>Fri, 29 Aug 2025 09:24:11 GMT</lastBuildDate>
+</channel>
+</rss>

@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss  xmlns:atom="http://www.w3.org/2005/Atom" 
+      xmlns:media="http://search.yahoo.com/mrss/" 
+      xmlns:content="http://purl.org/rss/1.0/modules/content/" 
+      xmlns:dc="http://purl.org/dc/elements/1.1/" 
+      version="2.0">
+<channel>
+<title>Olaf Meneses</title>
+<link>https://olafmeneses.com/projects/</link>
+<atom:link href="https://olafmeneses.com/projects/index.xml" rel="self" type="application/rss+xml"/>
+<description>Projects &amp; thoughts</description>
+<image>
+<url>https://olafmeneses.com/images/profile/profile.png</url>
+<title>Olaf Meneses</title>
+<link>https://olafmeneses.com/projects/</link>
+</image>
+<generator>quarto-1.7.33</generator>
+<lastBuildDate>Fri, 29 Aug 2025 09:24:11 GMT</lastBuildDate>
+<item>
+  <title>Del Fuego Al Dato</title>
+  <link>https://olafmeneses.com/projects/DelFuegoAlDato.html</link>
+  <description><![CDATA[ 
+
+
+
+
+<p>Link (Spanish): <a href="https://olafmeneses.shinyapps.io/delfuegoaldato">https://olafmeneses.shinyapps.io/delfuegoaldato</a> Post under construction…</p>
+
+
+
+ ]]></description>
+  <guid>https://olafmeneses.com/projects/DelFuegoAlDato.html</guid>
+  <pubDate>Fri, 29 Aug 2025 09:24:11 GMT</pubDate>
+  <media:content url="https://olafmeneses.com/images/Junta_CyL.png" medium="image" type="image/png" height="213" width="144"/>
+</item>
+<item>
+  <title>LangNet</title>
+  <link>https://olafmeneses.com/projects/LangNet.html</link>
+  <description><![CDATA[ 
+
+
+
+
+<p>Link (English): <a href="https://olafmeneses.shinyapps.io/LangNet">https://olafmeneses.shinyapps.io/LangNet</a> Post under construction…</p>
+
+
+
+ ]]></description>
+  <guid>https://olafmeneses.com/projects/LangNet.html</guid>
+  <pubDate>Fri, 29 Aug 2025 09:24:11 GMT</pubDate>
+  <media:content url="https://olafmeneses.com/images/LangNet.png" medium="image" type="image/png" height="178" width="144"/>
+</item>
+<item>
+  <title>Ruzafapp</title>
+  <link>https://olafmeneses.com/projects/ruzafapp.html</link>
+  <description><![CDATA[ 
+
+
+
+
+<p>Link (English): <a href="https://wooflaf.shinyapps.io/ruzafapp">https://wooflaf.shinyapps.io/ruzafapp</a> Link (Spanish): <a href="https://olafmeneses.shinyapps.io/ruzafapp">https://olafmeneses.shinyapps.io/ruzafapp</a> Post under construction…</p>
+
+
+
+ ]]></description>
+  <guid>https://olafmeneses.com/projects/ruzafapp.html</guid>
+  <pubDate>Fri, 29 Aug 2025 09:24:11 GMT</pubDate>
+  <media:content url="https://olafmeneses.com/images/ruzafapp.png" medium="image" type="image/png" height="144" width="144"/>
+</item>
+<item>
+  <title>VLC TrànsitAire</title>
+  <link>https://olafmeneses.com/projects/transitaire.html</link>
+  <description><![CDATA[ 
+
+
+
+
+<p>Link (Spanish): <a href="https://olafmeneses.shinyapps.io/transitaire">https://olafmeneses.shinyapps.io/transitaire</a> Post under construction…</p>
+
+
+
+ ]]></description>
+  <guid>https://olafmeneses.com/projects/transitaire.html</guid>
+  <pubDate>Fri, 29 Aug 2025 09:24:11 GMT</pubDate>
+  <media:content url="https://olafmeneses.com/images/transitaire.png" medium="image" type="image/png" height="144" width="144"/>
+</item>
+</channel>
+</rss>
