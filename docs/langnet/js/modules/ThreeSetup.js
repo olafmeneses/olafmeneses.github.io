@@ -10,7 +10,6 @@ export class ThreeSetup {
         this.controls = null;
         this.raycaster = null;
         this.mouse = null;
-        this.stats = null;
         this.onZoomChange = null;
         this.onAnimate = null;
         this.onFrustumUpdate = null;
@@ -79,23 +78,6 @@ export class ThreeSetup {
         
         const ambientLight = new THREE.AmbientLight(0xffffff, 1.0);
         this.scene.add(ambientLight);
-        
-        this.initStats();
-    }
-
-    initStats() {
-        if (typeof Stats !== 'undefined') {
-            this.stats = new Stats();
-            this.stats.showPanel(0);
-            
-            this.stats.dom.style.position = 'absolute';
-            this.stats.dom.style.left = '10px';
-            this.stats.dom.style.top = '10px';
-            this.stats.dom.style.zIndex = '100';
-            
-            document.body.appendChild(this.stats.dom);
-        } else {
-        }
     }
 
     animate = (time) => {
@@ -109,10 +91,6 @@ export class ThreeSetup {
         let delta = (now - this._lastTime) / 1000;
         if (delta > 1) delta = 1; // safety cap in case of tab switches
         this._lastTime = now;
-        
-        if (this.stats) {
-            this.stats.begin();
-        }
         
         // Update TWEEN
         if (window.TWEEN) {
@@ -143,10 +121,6 @@ export class ThreeSetup {
         
         if (this.renderer && this.scene && this.camera) {
             this.renderer.render(this.scene, this.camera);
-        }
-        
-        if (this.stats) {
-            this.stats.end();
         }
     }
 
